@@ -59,12 +59,13 @@
     							<input type="text" class="form-control" value="" id="start-time-box">
     							<span class="input-group-addon">
     								<span class="glyphicon glyphicon-time"></span>
-    							</span>
-    						</div>
+    							
     							<input type="radio" name="start-radio-ampm" id="start-radio-am" checked="checked">
     							<label for="start-radio-am">am</label>
     							<input type="radio" name="start-radio-ampm" id="start-radio-pm">
     							<label for="start-radio-pm">pm</label>
+    							</span>
+    						</div>
     						<script type="text/javascript">
     						$('#start-time').clockpicker();
     						</script>
@@ -73,17 +74,19 @@
     							<input type="text" class="form-control" value="" id="end-time-box">
     							<span class="input-group-addon">
     								<span class="glyphicon glyphicon-time"></span>
-    							</span>
-    						</div>
+    							
     							<input type="radio" name="end-radio-ampm" id="end-radio-am" checked="checked">
     							<label for="end-radio-am">am</label>
     							<input type="radio" name="end-radio-ampm" id="end-radio-pm">
     							<label for="end-radio-pm">pm</label>
+    							</span>
+    						</div>
     						<script type="text/javascript">
     						$('#end-time').clockpicker();
     						</script>
     						<h2>days of week</h2>
     						<form class="week" action="">
+    							<span class="input-group-addon">
     							<input type="checkbox" name="day-week" value="M" class="days" id="monday"><label for="monday">Monday</label>
     							<input type="checkbox" name="day-week" value="Tu" class="days" id="tuesday"><label for="tuesday">Tuesday</label>
     							<input type="checkbox" name="day-week" value="W" class="days" id="wednesday"><label for="wednesday">Wednesday</label>
@@ -91,15 +94,26 @@
     							<input type="checkbox" name="day-week" value="F" class="days" id="friday"><label for="friday">Friday</label>
     							<input type="checkbox" name="day-week" value="Sa" class="days" id="saturday"><label for="saturday">Saturday</label>
     							<input type="checkbox" name="day-week" value="Su" class="days" id="sunday"><label for="sunday">Sunday</label>
+    						</span>
     						</form>
     						<h2>must take this semester</h2>
+    						<div class="center">
+    						<span class="input-group-addon">
     						<input type="radio" name="semester-req" id="semester-radio-yes">
     						<label for="semester-radio-yes">yes</label>
     						<input type="radio" name="semester-req" id="semester-radio-no">
     						<label for="semester-radio-no">no</label>
-    					</form>
+    					</span>
+    				</div>
+    				<div class="center">
+    					
+    					    					<span class ="input-group-addon final-buttons">
     					<button type="button" class="btn btn-close" data-dismiss="modal">close</button>
     					<button type="button" class="btn btn-add-class" id="add-class-button">add class</button>
+    					</span>
+    				</div>
+    					</form>
+    				
     				</div>
     			</div>
     		</div>
