@@ -50,8 +50,8 @@
     				<div class="modal-body">
     					<form id="class-adder">
     						<h1>add a class</h1>
-    						<h2>class name</h2> <input type="text" class="input input-text" name="class-name">
-    						<h2>credit hours</h2> <input type="number" class="input input-number" name="credit-hours">
+    						<h2>class name</h2> <input type="text" class="input input-text" name="class-name" id="class-name">
+    						<h2>credit hours</h2> <input type="number" class="input input-number" name="credit-hours" id="credit-hours">
     						<h2>start time</h2> 
     						<div class="input-group clockpicker" id="start-time" data-placement="bottom" data-align="top" data-twelvehour="true">
     							<input type="text" class="form-control" value="13:14">
@@ -89,7 +89,7 @@
     						<label for="semester-radio-no">no</label>
     					</form>
     					<button type="button" class="btn btn-close" data-dismiss="modal">close</button>
-    					<button type="button" class="btn btn-add-class">add class</button>
+    					<button type="button" class="btn btn-add-class" id="add-class-button">add class</button>
     				</div>
     			</div>
     		</div>
