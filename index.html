@@ -4,48 +4,58 @@
 <head>
 
 	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-    <title>Schedule With Me</title>
+	<title>Schedule With Me</title>
 
+<<<<<<< HEAD
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/clockpicker.css" rel="stylesheet">
+=======
+	<!-- Bootstrap CSS -->
+	<link href="css/bootstrap.css" rel="stylesheet">
+>>>>>>> d501b657cad0eb83920349544e7b315eb4ac91d7
 
-    <!-- Custom CSS -->
-    <!--<link href="css/round-about.css" rel="stylesheet">-->
+	<!-- Custom CSS -->
+	<!--<link href="css/round-about.css" rel="stylesheet">-->
 
-    <!--jQuery-->
-    <script src="js/jquery-2.1.3.min.js"></script>
+	<!--jQuery-->
+	<script src="js/jquery-2.1.3.min.js"></script>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        <![endif]-->
 
-</head>
+    </head>
 
+<<<<<<< HEAD
 <body>
 	<script src="js/clockpicker.js"></script>
 
 	
+=======
+    <body>
+>>>>>>> d501b657cad0eb83920349544e7b315eb4ac91d7
 
-	<!--class adder-->
-	<div class="container">
-		<ul class = "class-list" id="class-listing">
-			<li class="select"> 
-				<button type="button" class="class-adder" id="class-modal-button" data-toggle="modal" data-target="#class-modal">
-					add a class
-				</button>
-			</li>
-		</ul>
-	</div>
+    	<!--class adder-->
+    	<div class="container">
+    		<ul class = "class-list" id="class-listing">
+    			<li class="select"> 
+    				<button type="button" class="class-adder" id="class-modal-button" data-toggle="modal" data-target="#class-modal">
+    					add a class
+    				</button>
+    			</li>
+    		</ul>
+    	</div>
 
+<<<<<<< HEAD
 	<!-- Class add Modal -->
 	<div class="modal fade" id="class-modal" tabindex="-1" role="dialog" aria-labelledby="class-modal-label" aria-hidden="true">
 	  <div class="modal-dialog">
@@ -97,14 +107,41 @@
 	    </div>
 	  </div>
 	</div>
+=======
+    	<!-- Class add Modal -->
+    	<div class="modal fade" id="class-modal" tabindex="-1" role="dialog" aria-labelledby="class-modal-label" aria-hidden="true">
+    		<div class="modal-dialog">
+    			<div class="modal-content">
+    				<div class="modal-body">
+    					<form id="class-adder">
+    						<h1>add a class</h1>
+    						<h2>class name</h2> <input type="text" class="input input-text" name="class-name" id ="class-name">
+    						<h2>credit hours</h2> <input type="number" class="input input-number" name="credit-hours" id ="credit-hours">
+    						<h2>start time</h2>
+    						<h2>end time</h2>
+    						<h2>days of week</h2>
+    						<h2>must take this semester</h2>
+    						<input type="radio" name="semester-req" id="semester-radio-yes">
+    						<label for="semester-radio-yes">yes</label>
+    						<input type="radio" name="semester-req" id="semester-radio-no">
+    						<label for="semester-radio-no">no</label>
+    					</form>
+    					<button type="button" class="btn btn-close" data-dismiss="modal">close</button>
+    					<button type="button" class="btn btn-add-class" id="add-class-button">add class</button>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+>>>>>>> d501b657cad0eb83920349544e7b315eb4ac91d7
 
-	<!--Optimize button-->
-	<div class="container">
-		<button type="button" class="optimize" id="optimizer" data-toggle="modal" data-target="#optimize-modal">
-			optimize
-		</button>
-	</div>
+    	<!--Optimize button-->
+    	<div class="container">
+    		<button type="button" class="optimize" id="optimizer" data-toggle="modal" data-target="#optimize-modal">
+    			optimize
+    		</button>
+    	</div>
 
+<<<<<<< HEAD
 	<!-- Optimize Modal -->
 	<div class="modal fade" id="optimize-modal" tabindex="-1" role="dialog" aria-labelledby="optimize-modal-label" aria-hidden="true">
 	  <div class="modal-dialog">
@@ -134,6 +171,37 @@
 	<!--bootstrap js shit-->
 	<script src="js/bootstrap.js"></script>
 	
+=======
+    	<!-- Optimize Modal -->
+    	<div class="modal fade" id="optimize-modal" tabindex="-1" role="dialog" aria-labelledby="optimize-modal-label" aria-hidden="true">
+    		<div class="modal-dialog">
+    			<div class="modal-content">
+    				<div class="modal-body">
+    					<form id="class-adder">
+    						<h1>optimize settings</h1>
+    						<h2>credit hours</h2> 
+    						<label for="min-classes">min</label>
+    						<input type="number" class="input input-number" name="min" id="min-classes">
+    						<label for="max-classes">max</label>
+    						<input type="number" class="input input-number" name="max" id="max-classes">
+    						<h2>number of classes</h2> 
+    						<label for="min-classes">min</label>
+    						<input type="number" class="input input-number" name="min" id="min-classes">
+    						<label for="max-classes">max</label>
+    						<input type="number" class="input input-number" name="max" id="max-classes">
+    						<h2>sort by</h2>
+    					</form>
+    					<button type="button" class="btn btn-close" data-dismiss="modal">close</button>
+    					<button type="button" class="btn btn-add-class" id="optimize-button">optimize</button>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
 
-</body>
-</html>
+    	<!--bootstrap js shit-->
+    	<script src="js/bootstrap.js"></script>
+    	<script src="js/everything.js"></script>
+>>>>>>> d501b657cad0eb83920349544e7b315eb4ac91d7
+
+    </body>
+    </html>
