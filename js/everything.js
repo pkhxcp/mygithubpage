@@ -1,7 +1,24 @@
-//document.getElementById("class-modal-button").onclick = document.getElementById("class-modal").modal('show');
+document.getElementById("add-class-button").onclick = function(){ 
 
-//document.getElementById("class-modal-button").onclick =  alert("YOOOO");
+	
 
-document.getElementById("add-class-button").onclick = document.getElementById("class-modal").modal('hide');
+	//alert(document.getElementById("class-name").value);
 
-//document.getElementById("optimize-button").onclick = document.getElementById("optimize-modal").modal('hide');
+	var className = document.getElementById("class-name").value;
+
+	
+
+	var creditHours = document.getElementById("credit-hours").value;
+
+
+
+	alert(className + "\n" + creditHours + "\n");
+
+
+}
+
+document.getElementById("optimize-button").onclick = function(){ 
+
+	alert("hooptimizing...");
+
+}
