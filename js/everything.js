@@ -4,16 +4,17 @@ document.getElementById("add-class-button").onclick = function() {
 
     var creditHours = document.getElementById("credit-hours").value;
 
-    //TODO change that ass
-    var startTime = getTime(11, 30, "AM");
-    var endTime = getTime(1, 0, "PM");
-
-
     var inputFields = document.getElementsByTagName('input');
     var numInputFields = inputFields.length;
 
     var checkedDays = [];
     var mustTake = false;
+    var start;
+    var end;
+    //start radio pm
+    var srpm;
+    //end radio pm
+    var erpm;
 
     for (var i = 0; i < numInputFields; i++) {
 
@@ -23,7 +24,31 @@ document.getElementById("add-class-button").onclick = function() {
             checkedDays.push(inputFields[i].value);
         } else if (inputFields[i].id == 'semester-radio-yes' && inputFields[i].checked) {
             mustTake = true;
+        } 
+        else if (inputFields[i].id == 'start-time-box') {
+             start = inputFields[i].value;
         }
+        else if (inputFields[i].id == 'end-time-box') {
+             end = inputFields[i].value;
+        }
+        else if (inputFields[i].id == 'start-radio-pm') {
+             srpm = inputFields[i].checked;
+        }
+        else if (inputFields[i].id == 'end-radio-pm') {
+             erpm = inputFields[i].checked;
+        }
+
+
+        //TODO change that ass
+        var startTime = getTime(11, 30, "AM");
+
+
+        var endTime = getTime(1, 0, "PM");
+
+        //if ()
+        
+
+        //alert(inputFields[i].id);
 
     }
 
