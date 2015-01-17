@@ -31,8 +31,8 @@
 
 <body>
 
+	<!--class adder-->
 	<div class="container">
-		<!--Beginning page with "add a class" button in middle of screen-->
 		<ul class = "class-list" id="class-listing">
 			<li class="select"> 
 				<button type="button" class="class-adder" id="class-modal-button" data-toggle="modal" data-target="#class-modal">
@@ -40,19 +40,21 @@
 				</button>
 			</li>
 		</ul>
+	</div>
 
-			<!-- Modal -->
-	<div class="modal fade" id="class-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<!-- Class add Modal -->
+	<div class="modal fade" id="class-modal" tabindex="-1" role="dialog" aria-labelledby="class-modal-label" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-body">
 	        <form id="class-adder">
-	        	class name <input type="text" name="class-name">
-	        	credit hours <input type="number" name="credit-hours">
-	        	start time
-	        	end time
-	        	days of week
-	        	must take this semester 
+	        	<h1>add a class</h1>
+	        	<p>class name</p> <input type="text" class="input input-text" name="class-name">
+	        	<p>credit hours</p> <input type="number" class="input input-number" name="credit-hours">
+	        	<p>start time</p>
+	        	<p>end time</p>
+	        	<p>days of week</p>
+	        	<p>must take this semester</p>
 	        		<input type="radio" name="semester-req" id="semester-radio-yes">
 	        		<label for="semester-radio-yes">yes</label>
 	        		<input type="radio" name="semester-req" id="semester-radio-no">
@@ -60,6 +62,39 @@
 	        </form>
 	        <button type="button" class="btn btn-close" data-dismiss="modal">close</button>
 	        <button type="button" class="btn btn-add-class">add class</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!--Optimize button-->
+	<div class="container">
+		<button type="button" class="optimize" id="optimizer" data-toggle="modal" data-target="#optimize-modal">
+			optimize
+		</button>
+	</div>
+
+	<!-- Optimize Modal -->
+	<div class="modal fade" id="optimize-modal" tabindex="-1" role="dialog" aria-labelledby="optimize-modal-label" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	        <form id="class-adder">
+	        	<h1>optimize settings</h1>
+	        	<h2>credit hours</h2> 
+	        		<p class="minmax">min</p>
+	        		<input type="number" class="input input-number" name="min-hours">
+	        		<p class="minmax">max</p>
+	        		<input type="number" class="input input-number" name="max-hours">
+	        	<h2>number of classes</h2> 
+	        		<p class="minmax">min</p>
+	        		<input type="number" class="input input-number" name="min-classes">
+	        		<p class="minmax">max</p>
+	        		<input type="number" class="input input-number" name="max-classes">
+	        	<h2>sort by</h2>
+	        </form>
+	        <button type="button" class="btn btn-close" data-dismiss="modal">close</button>
+	        <button type="button" class="btn btn-add-class">optimize</button>
 	      </div>
 	    </div>
 	  </div>
