@@ -68,6 +68,14 @@ document.getElementById("optimize-button").onclick = function() {
 
     alert("hooptimizing...");
 
+    var minClasses = document.getElementById("min-classes").value;
+    //var minClasses = document.getElementById("min-classes").value;
+    //var minClasses = document.getElementById("min-classes").value;
+    //var minClasses = document.getElementById("min-classes").value;
+
+    alert(minClasses);
+    
+
 }
 
 function getTime(hours, minutes, period) {
