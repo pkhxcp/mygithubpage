@@ -4,6 +4,8 @@ document.getElementById("add-class-button").onclick = function() {
 
     var creditHours = document.getElementById("credit-hours").value;
 
+    var professor = document.getElementById("professor").value;
+
     var inputFields = document.getElementsByTagName('input');
     var numInputFields = inputFields.length;
 
@@ -33,8 +35,8 @@ document.getElementById("add-class-button").onclick = function() {
         }
     }
 
-    if (start == "" || end == "") {
-        alert("Please enter start and end times");
+    if (className == "" || start == "" || end == "") {
+        alert("All fields but professor are required");
     } else {
 
         var startHour = start.substring(0,2);
@@ -51,7 +53,8 @@ document.getElementById("add-class-button").onclick = function() {
 
         var endTime = getTime(Number(endHour), Number(endMinute), endRadio);
 
-        alert("yo \n" + className + "\n" + creditHours + "\n" + startTime + "\n" + endTime + "\n" + mustTake);
+        //also have array called checkedDays
+        alert("yo \n" + className + "\n" + creditHours + "\n" + professor + "\n" + startTime + "\n" + endTime + "\n" + mustTake);
     }
 }
 
@@ -69,11 +72,12 @@ document.getElementById("optimize-button").onclick = function() {
     alert("hooptimizing...");
 
     var minClasses = document.getElementById("min-classes").value;
-    //var minClasses = document.getElementById("min-classes").value;
-    //var minClasses = document.getElementById("min-classes").value;
-    //var minClasses = document.getElementById("min-classes").value;
+    var maxClasses = document.getElementById("max-classes").value;
+    var minCredits = document.getElementById("min-hours").value;
+    var maxCredits = document.getElementById("max-hours").value;
 
-    alert(minClasses);
+
+    alert(minClasses + " " + maxClasses + " " + minCredits + " " + maxCredits);
     
 
 }
