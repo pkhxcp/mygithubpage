@@ -35,8 +35,8 @@
 		<!--Beginning page with "add a class" button in middle of screen-->
 		<ul class = "class-list">
 			<li class="select"> 
-				<button type="button" class="class-adder" id="class-modal-button" data-toggle="modal">
-					Add a class
+				<button type="button" class="class-adder" id="class-modal-button" data-toggle="modal" data-target="#class-modal">
+					add a class
 				</button>
 			</li>
 		</ul>
@@ -46,9 +46,20 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-body">
-	        ...
-	        <button type="button" class="btn btn-close">Close</button>
-	        <button type="button" class="btn btn-add-class">Add class</button>
+	        <form id="class-adder">
+	        	class name <input type="text" name="class-name">
+	        	credit hours <input type="number" name="credit-hours">
+	        	start time
+	        	end time
+	        	days of week
+	        	must take this semester 
+	        		<input type="radio" name="semester-req" id="semester-radio-yes">
+	        		<label for="semester-radio-yes">yes</label>
+	        		<input type="radio" name="semester-req" id="semester-radio-no">
+	        		<label for="semester-radio-no">no</label>
+	        </form>
+	        <button type="button" class="btn btn-close">close</button>
+	        <button type="button" class="btn btn-add-class">add class</button>
 	      </div>
 	    </div>
 	  </div>
