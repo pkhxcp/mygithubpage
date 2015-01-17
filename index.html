@@ -13,6 +13,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/clockpicker.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <!--<link href="css/round-about.css" rel="stylesheet">-->
@@ -30,6 +31,9 @@
 </head>
 
 <body>
+	<script src="js/clockpicker.js"></script>
+
+	
 
 	<!--class adder-->
 	<div class="container">
@@ -51,9 +55,36 @@
 	        	<h1>add a class</h1>
 	        	<h2>class name</h2> <input type="text" class="input input-text" name="class-name">
 	        	<h2>credit hours</h2> <input type="number" class="input input-number" name="credit-hours">
-	        	<h2>start time</h2>
+	        	<h2>start time</h2> 
+	        		<div class="input-group clockpicker" id="start-time" data-placement="bottom" data-align="top" data-twelvehour="true">
+					    <input type="text" class="form-control" value="13:14">
+					    <span class="input-group-addon">
+					        <span class="glyphicon glyphicon-time"></span>
+					    </span>
+					</div>
+					<script type="text/javascript">
+						$('#start-time').clockpicker();
+					</script>
 	        	<h2>end time</h2>
+	        		<div class="input-group clockpicker" id="end-time" data-placement="bottom" data-align="top" data-autoclose="true">
+					    <input type="text" class="form-control" value="13:14">
+					    <span class="input-group-addon">
+					        <span class="glyphicon glyphicon-time"></span>
+					    </span>
+					</div>
+					<script type="text/javascript">
+						$('#end-time').clockpicker();
+					</script>
 	        	<h2>days of week</h2>
+	        	<form class="week" action="">
+					<input type="checkbox" name="day-week" value="M" class="days">Monday
+					<input type="checkbox" name="day-week" value="Tu" class="days">Tuesday
+					<input type="checkbox" name="day-week" value="W" class="days">Wednesday
+					<input type="checkbox" name="day-week" value="Th" class="days">Thursday
+					<input type="checkbox" name="day-week" value="F" class="days">Friday
+					<input type="checkbox" name="day-week" value="Sa" class="days">Saturday
+					<input type="checkbox" name="day-week" value="Su" class="days">Sunday
+				</form>
 	        	<h2>must take this semester</h2>
 	        		<input type="radio" name="semester-req" id="semester-radio-yes">
 	        		<label for="semester-radio-yes">yes</label>
@@ -94,7 +125,7 @@
 	        	<h2>sort by</h2>
 	        </form>
 	        <button type="button" class="btn btn-close" data-dismiss="modal">close</button>
-	        <button type="button" class="btn btn-add-class">optimize</button>
+	        <button type="button" class="btn btn-optimize">optimize</button>
 	      </div>
 	    </div>
 	  </div>
@@ -102,6 +133,7 @@
 
 	<!--bootstrap js shit-->
 	<script src="js/bootstrap.js"></script>
+	
 
 </body>
 </html>
