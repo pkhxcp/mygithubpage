@@ -49,12 +49,12 @@
 	      <div class="modal-body">
 	        <form id="class-adder">
 	        	<h1>add a class</h1>
-	        	<p>class name</p> <input type="text" class="input input-text" name="class-name">
-	        	<p>credit hours</p> <input type="number" class="input input-number" name="credit-hours">
-	        	<p>start time</p>
-	        	<p>end time</p>
-	        	<p>days of week</p>
-	        	<p>must take this semester</p>
+	        	<h2>class name</h2> <input type="text" class="input input-text" name="class-name">
+	        	<h2>credit hours</h2> <input type="number" class="input input-number" name="credit-hours">
+	        	<h2>start time</h2>
+	        	<h2>end time</h2>
+	        	<h2>days of week</h2>
+	        	<h2>must take this semester</h2>
 	        		<input type="radio" name="semester-req" id="semester-radio-yes">
 	        		<label for="semester-radio-yes">yes</label>
 	        		<input type="radio" name="semester-req" id="semester-radio-no">
@@ -82,15 +82,15 @@
 	        <form id="class-adder">
 	        	<h1>optimize settings</h1>
 	        	<h2>credit hours</h2> 
-	        		<p class="minmax">min</p>
-	        		<input type="number" class="input input-number" name="min-hours">
-	        		<p class="minmax">max</p>
-	        		<input type="number" class="input input-number" name="max-hours">
+	        		<label for="min-classes">min</label>
+	        		<input type="number" class="input input-number" name="min" id="min-classes">
+	        		<label for="max-classes">max</label>
+	        		<input type="number" class="input input-number" name="max" id="max-classes">
 	        	<h2>number of classes</h2> 
-	        		<p class="minmax">min</p>
-	        		<input type="number" class="input input-number" name="min-classes">
-	        		<p class="minmax">max</p>
-	        		<input type="number" class="input input-number" name="max-classes">
+	        		<label for="min-classes">min</label>
+	        		<input type="number" class="input input-number" name="min" id="min-classes">
+	        		<label for="max-classes">max</label>
+	        		<input type="number" class="input input-number" name="max" id="max-classes">
 	        	<h2>sort by</h2>
 	        </form>
 	        <button type="button" class="btn btn-close" data-dismiss="modal">close</button>
