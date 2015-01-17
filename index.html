@@ -59,11 +59,11 @@
     							<input type="text" class="form-control" value="" id="start-time-box">
     							<span class="input-group-addon">
     								<span class="glyphicon glyphicon-time"></span>
-    							
-    							<input type="radio" name="start-radio-ampm" id="start-radio-am" checked="checked">
-    							<label for="start-radio-am">am</label>
-    							<input type="radio" name="start-radio-ampm" id="start-radio-pm">
-    							<label for="start-radio-pm">pm</label>
+
+    								<input type="radio" name="start-radio-ampm" id="start-radio-am" checked="checked">
+    								<label for="start-radio-am">am</label>
+    								<input type="radio" name="start-radio-ampm" id="start-radio-pm">
+    								<label for="start-radio-pm">pm</label>
     							</span>
     						</div>
     						<script type="text/javascript">
@@ -74,11 +74,11 @@
     							<input type="text" class="form-control" value="" id="end-time-box">
     							<span class="input-group-addon">
     								<span class="glyphicon glyphicon-time"></span>
-    							
-    							<input type="radio" name="end-radio-ampm" id="end-radio-am" checked="checked">
-    							<label for="end-radio-am">am</label>
-    							<input type="radio" name="end-radio-ampm" id="end-radio-pm">
-    							<label for="end-radio-pm">pm</label>
+
+    								<input type="radio" name="end-radio-ampm" id="end-radio-am" checked="checked">
+    								<label for="end-radio-am">am</label>
+    								<input type="radio" name="end-radio-ampm" id="end-radio-pm">
+    								<label for="end-radio-pm">pm</label>
     							</span>
     						</div>
     						<script type="text/javascript">
@@ -87,33 +87,33 @@
     						<h2>days of week</h2>
     						<form class="week" action="">
     							<span class="input-group-addon">
-    							<input type="checkbox" name="day-week" value="M" class="days" id="monday"><label for="monday">Monday</label>
-    							<input type="checkbox" name="day-week" value="Tu" class="days" id="tuesday"><label for="tuesday">Tuesday</label>
-    							<input type="checkbox" name="day-week" value="W" class="days" id="wednesday"><label for="wednesday">Wednesday</label>
-    							<input type="checkbox" name="day-week" value="Th" class="days" id="thursday"><label for="thursday">Thursday</label>
-    							<input type="checkbox" name="day-week" value="F" class="days" id="friday"><label for="friday">Friday</label>
-    							<input type="checkbox" name="day-week" value="Sa" class="days" id="saturday"><label for="saturday">Saturday</label>
-    							<input type="checkbox" name="day-week" value="Su" class="days" id="sunday"><label for="sunday">Sunday</label>
-    						</span>
+    								<input type="checkbox" name="day-week" value="M" class="days" id="monday"><label for="monday">Monday</label>
+    								<input type="checkbox" name="day-week" value="Tu" class="days" id="tuesday"><label for="tuesday">Tuesday</label>
+    								<input type="checkbox" name="day-week" value="W" class="days" id="wednesday"><label for="wednesday">Wednesday</label>
+    								<input type="checkbox" name="day-week" value="Th" class="days" id="thursday"><label for="thursday">Thursday</label>
+    								<input type="checkbox" name="day-week" value="F" class="days" id="friday"><label for="friday">Friday</label>
+    								<input type="checkbox" name="day-week" value="Sa" class="days" id="saturday"><label for="saturday">Saturday</label>
+    								<input type="checkbox" name="day-week" value="Su" class="days" id="sunday"><label for="sunday">Sunday</label>
+    							</span>
     						</form>
     						<h2>must take this semester</h2>
     						<div class="center">
-    						<span class="input-group-addon">
-    						<input type="radio" name="semester-req" id="semester-radio-yes">
-    						<label for="semester-radio-yes">yes</label>
-    						<input type="radio" name="semester-req" id="semester-radio-no">
-    						<label for="semester-radio-no">no</label>
-    					</span>
-    				</div>
-    				<div class="center">
-    					
-    					    					<span class ="input-group-addon final-buttons">
-    					<button type="button" class="btn btn-close" data-dismiss="modal">close</button>
-    					<button type="button" class="btn btn-add-class" id="add-class-button">add class</button>
-    					</span>
-    				</div>
+    							<span class="input-group-addon">
+    								<input type="radio" name="semester-req" id="semester-radio-yes">
+    								<label for="semester-radio-yes">yes</label>
+    								<input type="radio" name="semester-req" id="semester-radio-no">
+    								<label for="semester-radio-no">no</label>
+    							</span>
+    						</div>
+    						<div class="center">
+
+    							<span class ="input-group-addon final-buttons">
+    								<button type="button" class="btn btn-close" data-dismiss="modal">close</button>
+    								<button type="button" class="btn btn-add-class" id="add-class-button">add class</button>
+    							</span>
+    						</div>
     					</form>
-    				
+
     				</div>
     			</div>
     		</div>
@@ -134,15 +134,40 @@
     					<form id="class-adder">
     						<h1>optimize settings</h1>
     						<h2>credit hours</h2> 
-    						<label for="min-classes">min</label>
-    						<input type="number" class="input input-number" name="min" id="min-classes">
-    						<label for="max-classes">max</label>
-    						<input type="number" class="input input-number" name="max" id="max-classes">
+    						<span class ="input-group-addon">
+    							<span class="inlineblock">
+    								<label for="min-classes">min</label>
+    							</span>
+    							<span class="inlineblock">
+    								<input type="number" class="input input-number form-control" name="min" id="min-classes">
+    							</span>
+    						</span>
+    						<span class ="input-group-addon">
+    							<span class="inlineblock">
+    								<label class="opt" for="max-classes">max</label>
+    							</span>
+    							<span class="inlineblock">
+    								<input type="number" class="input input-number form-control opting" name="max" id="max-classes">
+    							</span>
+    						</span>
+    						
     						<h2>number of classes</h2> 
-    						<label for="min-classes">min</label>
-    						<input type="number" class="input input-number" name="min" id="min-classes">
-    						<label for="max-classes">max</label>
-    						<input type="number" class="input input-number" name="max" id="max-classes">
+    						<span class ="input-group-addon">
+    							<span class="inlineblock">
+    								<label for="min-hours">min</label>
+    							</span>
+    							<span class="inlineblock">
+    								<input type="number" class="input input-number form-control" name="min" id="min-hours">
+    							</span>
+    						</span>
+    						<span class ="input-group-addon">
+    							<span class="inlineblock">
+    								<label class="opt" for="max-hours">max</label>
+    							</span>
+    							<span class="inlineblock">
+    								<input type="number" class="input input-number form-control opting" name="max" id="max-hours">
+    							</span>
+    						</span>
     						<h2>sort by</h2>
     					</form>
     					<button type="button" class="btn btn-close" data-dismiss="modal">close</button>

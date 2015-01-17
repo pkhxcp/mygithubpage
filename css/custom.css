@@ -24,6 +24,18 @@ div.modal-body{
 	background-color:transparent;
 }
 
+.inlineblock{
+	display: inline-block;
+}
+
+.input-group-addon{
+	display:block;
+}
+
+.input, .input-number, .form-control{
+	width: 500px;
+}
+
 
 ul.class-list{
 	font: inherit;
