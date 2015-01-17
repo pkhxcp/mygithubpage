@@ -12,7 +12,7 @@ document.getElementById("add-class-button").onclick = function(){
 
 
 
-	alert(className + "\n" + creditHours + "\n");
+	alert("yo \n" + className + "\n" + creditHours + "\n");
 
 
 }
