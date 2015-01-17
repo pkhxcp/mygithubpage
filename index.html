@@ -33,9 +33,9 @@
 
 	<div class="container">
 		<!--Beginning page with "add a class" button in middle of screen-->
-		<ul class = "class-list">
+		<ul class = "class-list" id="class-listing">
 			<li class="select"> 
-				<button type="button" class="class-adder" id="class-modal-button" data-toggle="modal" data-target="#class-modal">
+				<button type="button" class="class-adder" id="class-modal-button" data-toggle="modal" data-target="class-modal">
 					add a class
 				</button>
 			</li>
@@ -58,7 +58,7 @@
 	        		<input type="radio" name="semester-req" id="semester-radio-no">
 	        		<label for="semester-radio-no">no</label>
 	        </form>
-	        <button type="button" class="btn btn-close">close</button>
+	        <button type="button" class="btn btn-close" data-dismiss="modal">close</button>
 	        <button type="button" class="btn btn-add-class">add class</button>
 	      </div>
 	    </div>
