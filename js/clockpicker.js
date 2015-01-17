@@ -72,7 +72,7 @@
 				'<span class="clockpicker-span-hours text-primary"></span>',
 				' : ',
 				'<span class="clockpicker-span-minutes"></span>',
-				'<span class="clockpicker-span-am-pm"></span>',
+				//'<span class="clockpicker-span-am-pm"></span>',
 			'</div>',
 			'<div class="popover-content">',
 				'<div class="clockpicker-plate">',
@@ -80,8 +80,8 @@
 					'<div class="clockpicker-dial clockpicker-hours"></div>',
 					'<div class="clockpicker-dial clockpicker-minutes clockpicker-dial-out"></div>',
 				'</div>',
-				'<span class="clockpicker-am-pm-block">',
-				'</span>',
+				//'<span class="clockpicker-am-pm-block">',
+				//'</span>',
 			'</div>',
 		'</div>'
 	].join('');
@@ -92,7 +92,7 @@
 			plate = popover.find('.clockpicker-plate'),
 			hoursView = popover.find('.clockpicker-hours'),
 			minutesView = popover.find('.clockpicker-minutes'),
-			amPmBlock = popover.find('.clockpicker-am-pm-block'),
+			//amPmBlock = popover.find('.clockpicker-am-pm-block'),
 			isInput = element.prop('tagName') === 'INPUT',
 			input = isInput ? element : element.find('input'),
 			addon = element.find('.input-group-addon'),
@@ -112,23 +112,23 @@
 		this.plate = plate;
 		this.hoursView = hoursView;
 		this.minutesView = minutesView;
-		this.amPmBlock = amPmBlock;
+		//this.amPmBlock = amPmBlock;
 		this.spanHours = popover.find('.clockpicker-span-hours');
 		this.spanMinutes = popover.find('.clockpicker-span-minutes');
-		this.spanAmPm = popover.find('.clockpicker-span-am-pm');
-		this.amOrPm = "";
+		//this.spanAmPm = popover.find('.clockpicker-span-am-pm');
+		//this.amOrPm = "";
 		
 		// Setup for for 12 hour clock if option is selected
-		if (options.twelvehour) {
+		// if (options.twelvehour) {
 			
-			var  amPmButtonsTemplate = ['<div class="clockpicker-am-pm-block">',
-				'<button type="button" class="btn btn-sm btn-default clockpicker-button clockpicker-am-button">',
-				'AM</button>',
-				'<button type="button" class="btn btn-sm btn-default clockpicker-button clockpicker-pm-button">',
-				'PM</button>',
-				'</div>'].join('');
+		// 	var  amPmButtonsTemplate = ['<div class="clockpicker-am-pm-block">',
+		// 		'<button type="button" class="btn btn-sm btn-default clockpicker-button clockpicker-am-button">',
+		// 		'AM</button>',
+		// 		'<button type="button" class="btn btn-sm btn-default clockpicker-button clockpicker-pm-button">',
+		// 		'PM</button>',
+		// 		'</div>'].join('');
 			
-			var amPmButtons = $(amPmButtonsTemplate);
+		// 	var amPmButtons = $(amPmButtonsTemplate);
 			//amPmButtons.appendTo(plate);
 			
 			////Not working b/c they are not shown when this runs
@@ -144,20 +144,20 @@
 			//        $('.clockpicker-span-am-pm').empty().append('PM');
 			//    });
 	
-			$('<button type="button" class="btn btn-sm btn-default clockpicker-button am-button">' + "AM" + '</button>')
-				.on("click", function() {
-					self.amOrPm = "AM";
-					$('.clockpicker-span-am-pm').empty().append('AM');
-				}).appendTo(this.amPmBlock);
+		// 	$('<button type="button" class="btn btn-sm btn-default clockpicker-button am-button">' + "AM" + '</button>')
+		// 		.on("click", function() {
+		// 			self.amOrPm = "AM";
+		// 			$('.clockpicker-span-am-pm').empty().append('AM');
+		// 		}).appendTo(this.amPmBlock);
 				
 				
-			$('<button type="button" class="btn btn-sm btn-default clockpicker-button pm-button">' + "PM" + '</button>')
-				.on("click", function() {
-					self.amOrPm = 'PM';
-					$('.clockpicker-span-am-pm').empty().append('PM');
-				}).appendTo(this.amPmBlock);
+		// 	$('<button type="button" class="btn btn-sm btn-default clockpicker-button pm-button">' + "PM" + '</button>')
+		// 		.on("click", function() {
+		// 			self.amOrPm = 'PM';
+		// 			$('.clockpicker-span-am-pm').empty().append('PM');
+		// 		}).appendTo(this.amPmBlock);
 				
-		}
+		// }
 		
 		if (! options.autoclose) {
 			// If autoclose is not setted, append a button
@@ -676,9 +676,9 @@
 		this.hide();
 		var last = this.input.prop('value'),
 			value = leadingZero(this.hours) + ':' + leadingZero(this.minutes);
-		if  (this.options.twelvehour) {
-			value = value + this.amOrPm;
-		}
+		// if  (this.options.twelvehour) {
+		// 	value = value + this.amOrPm;
+		// }
 		
 		this.input.prop('value', value);
 		if (value !== last) {

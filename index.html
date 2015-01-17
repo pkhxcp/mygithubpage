@@ -53,22 +53,30 @@
     						<h2>class name</h2> <input type="text" class="input input-text" name="class-name" id="class-name">
     						<h2>credit hours</h2> <input type="number" class="input input-number" name="credit-hours" id="credit-hours">
     						<h2>start time</h2> 
-    						<div class="input-group clockpicker" id="start-time" data-placement="bottom" data-align="top" data-twelvehour="true">
-    							<input type="text" class="form-control" value="13:14">
+    						<div class="input-group clockpicker" id="start-time" data-placement="bottom" data-align="top" data-twelvehour="true" data-autoclose="true">
+    							<input type="text" class="form-control" value="">
     							<span class="input-group-addon">
     								<span class="glyphicon glyphicon-time"></span>
     							</span>
     						</div>
+    							<input type="radio" name="start-radio-ampm" id="start-radio-am" checked="checked">
+    							<label for="start-radio-am">am</label>
+    							<input type="radio" name="start-radio-ampm" id="start-radio-pm">
+    							<label for="start-radio-pm">pm</label>
     						<script type="text/javascript">
     						$('#start-time').clockpicker();
     						</script>
     						<h2>end time</h2>
-    						<div class="input-group clockpicker" id="end-time" data-placement="bottom" data-align="top" data-autoclose="true">
-    							<input type="text" class="form-control" value="13:14">
+    						<div class="input-group clockpicker" id="end-time" data-placement="bottom" data-align="top" data-twelvehour="true" data-autoclose="true">
+    							<input type="text" class="form-control" value="">
     							<span class="input-group-addon">
     								<span class="glyphicon glyphicon-time"></span>
     							</span>
     						</div>
+    							<input type="radio" name="end-radio-ampm" id="end-radio-am" checked="checked">
+    							<label for="end-radio-am">am</label>
+    							<input type="radio" name="end-radio-ampm" id="end-radio-pm">
+    							<label for="end-radio-pm">pm</label>
     						<script type="text/javascript">
     						$('#end-time').clockpicker();
     						</script>
@@ -127,6 +135,10 @@
     			</div>
     		</div>
     	</div>
+
+
+
+
 
     	<!--bootstrap js shit-->
     	<script src="js/bootstrap.js"></script>
