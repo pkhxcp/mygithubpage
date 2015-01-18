@@ -389,8 +389,8 @@ function finalCompile(BigArray){
         var earliestTime = findEarliest(wArr);
         createTable(i);
         for(var wday=0;wday<wArr.length;wday++){
+            var currentTime=earliestTime;
             for(var course=0; course<wArr[wday].length; course++){
-                var currentTime=earliestTime;
                 console.log("This is early:"+currentTime);
                 console.log("This is the next time:"+wArr[wday][course].startTime);
                 //If the course's start time is the same as the earliest start time in the week
