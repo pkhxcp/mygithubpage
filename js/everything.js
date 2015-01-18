@@ -390,12 +390,32 @@ function getDay(wday){
     }
 }
 
+function colorPicker(day,switcher){
+    if(day%2==0){
+        if(switcher){
+            return "#D9C897"
+        }
+        else{
+            return "#E3819E"
+        }
+    }
+    else{
+        if(switcher){
+            return "#80E39E"
+        }
+        else{
+            return "#D9A635"
+        }
+    }
+}
+
 function finalCompile(BigArray){
     for(var i=0; i<BigArray.length; i++){
         var wArr = sortDays(BigArray[i]);
         var latestTime = findLatest(wArr);
         var earliestTime = findEarliest(wArr);
         createTable(i);
+        var switcherbool = true;
         for(var wday=0;wday<wArr.length;wday++){
             var currentTime=earliestTime;
             for(var course=0; course<wArr[wday].length; course++){
@@ -403,8 +423,13 @@ function finalCompile(BigArray){
                 console.log("This is the next time:"+wArr[wday][course].startTime);
                 //If the course's start time is the same as the earliest start time in the week
                 if(wArr[wday][course].startTime==earliestTime){
-                    addTime(wArr[wday][course],i,wday);
-                    currentTime=wArr[wday][course].endTime;
+                    var $coolguy2 = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(wArr[wday][course].startTime)+'</div><div class="table-class">'+wArr[wday][course].className+'<div class="table-professor">'+wArr[wday][course].professor+'</div></div><div class="table-time-end">'+getTimeFromDec(wArr[wday][course].endTime)+'</div></div>');
+                        $coolguy2.css({'height':""+getDuration(wArr[wday][course])*1.5+"px",
+                                    'position':"relative",
+                                    'background-color':""+colorPicker(wday,switcherbool)});
+                        switcherbool = !switcherbool;
+                        $("#"+getDay(wday)+"-div"+i+"").append($coolguy2);
+                        currentTime=wArr[wday][course].endTime;
                 }
                 else{
                     // //if the first course of the day is not the same as the earliest start time in the week and there is more courses after it
@@ -430,7 +455,9 @@ function finalCompile(BigArray){
                     else if(currentTime==wArr[wday][course].startTime){
                         var $coolguy2 = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(wArr[wday][course].startTime)+'</div><div class="table-class">'+wArr[wday][course].className+'<div class="table-professor">'+wArr[wday][course].professor+'</div></div><div class="table-time-end">'+getTimeFromDec(wArr[wday][course].endTime)+'</div></div>');
                         $coolguy2.css({'height':""+getDuration(wArr[wday][course])*1.5+"px",
-                                    'position':"relative"});
+                                    'position':"relative",
+                                    'background-color':""+colorPicker(wday,switcherbool)});
+                        switcherbool = !switcherbool;
                         $("#"+getDay(wday)+"-div"+i+"").append($coolguy2);
                         currentTime=wArr[wday][course].endTime;
                     }
@@ -444,7 +471,9 @@ function finalCompile(BigArray){
                         currentTime=wArr[wday][course].startTime;
                         var $coolguy2 = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(wArr[wday][course].startTime)+'</div><div class="table-class">'+wArr[wday][course].className+'<div class="table-professor">'+wArr[wday][course].professor+'</div></div><div class="table-time-end">'+getTimeFromDec(wArr[wday][course].endTime)+'</div></div>');
                         $coolguy2.css({'height':""+getDuration(wArr[wday][course])*1.5+"px",
-                                    'position':"relative"});
+                                    'position':"relative",
+                                'background-color':""+colorPicker(wday,switcherbool)});
+                        switcherbool = !switcherbool;
                         $("#"+getDay(wday)+"-div"+i+"").append($coolguy2);
                         currentTime=wArr[wday][course].endTime;
                     }
