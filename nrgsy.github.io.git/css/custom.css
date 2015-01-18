@@ -1,0 +1,319 @@
+html{
+
+	background-color: #7E8ACC;
+}
+body{
+	background-color: #7E8ACC;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lato', sans-serif;
+}
+p, div {
+    font-family: 'Lato', sans-serif;
+}
+
+div.modal-body{
+	background-color: #D9C87B;/*#CCBEB8;*/
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.modal-content, .modal-dialog, .modal, .fade, .input-group-addon{
+	border: 0px solid #000;
+	background-color:transparent;
+}
+
+.inlineblock{
+	display: inline-block;
+}
+
+.optimizationfix{
+	display:block;
+}
+
+.input, .input-number, .form-control{
+	width: 500px;
+}
+
+
+ul.class-list{
+	font: inherit;
+	text-align: center;
+}
+
+li.select button{
+	list-style-type: none;
+	font-size: 50px;
+	display: inline-block;
+	border: 0px solid #000;
+  	font-weight: bold;
+  	background-color: #D9C87B;
+  	width: 500px;
+  	text-align: center;
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    z-index: 10;
+    font-family: 'Lato', sans-serif;
+
+}
+
+div.school{
+	float:left;
+	background-color: #D9A635;
+	width: 100%;
+	height: 50px;
+	vertical-align: top;
+	font-weight: bold; 
+
+	margin:0px;
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+div.table-divider{
+	margin: 30px;
+}
+
+.table-time-start, .table-class, .table-professor, .table-time-end{
+	font-family: 'Lato', sans-serif;
+    text-align: center;
+}
+
+.table-time-start{
+	position:absolute;
+  	top:0;
+    width:100%; 
+    font-size: 15px;
+}
+
+.table-class{
+	width:100%;
+	top:50%;
+	-webkit-transform: translate(0%, -50%);  
+    transform: translate(0%, -50%);   
+  	position: relative;
+  	font-size: 17px;
+}
+
+.table-professor{
+	position:relative;
+	width: 100%;
+	top:-5px;
+	font-size: 15px;
+}
+
+.table-time-end{
+	position:absolute;
+  	bottom:0;
+    width:100%; 
+    font-size: 15px;
+}
+
+td, .table-div{
+	padding:0px;
+}
+
+table{
+	table-layout: fixed;
+    border: 1px solid black;
+    border-collapse: collapse;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+th{
+    padding: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 25px;
+    text-align: center;
+}
+
+td{
+	padding:0px;
+	vertical-align: top;
+  	text-align: left;
+}
+
+.class-btn{
+	background-color: #bcd97d;
+	list-style-type: none;
+	font-size: 50px;
+	display: inline-block;
+	border: 0px solid #000;
+  	font-weight: bold;
+  	width: 500px;
+  	text-align: center;
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    z-index: 30;
+    font-family: 'Lato', sans-serif;
+
+}
+
+.class-btn-new{
+	background-color: #bcd97d;
+	list-style-type: none;
+	font-size: 50px;
+	display: inline-block;
+	border: 0px solid #000;
+  	font-weight: bold;
+  	width: 500px;
+  	text-align: center;
+  	position: absolute;
+  	left: 50%;
+  	padding-top:3px;
+  	top: calc(inherit-30px);
+  	transform: translate(-50%, -50%);
+  	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+    z-index: 0;
+
+}
+
+.optimize{
+	list-style-type: none;
+	font-size: 50px;
+	display: inline-block;
+	border: 0px solid #000;
+  	font-weight: bold;
+  	background-color: #80E39E;
+  	width: 500px;
+  	text-align: center;
+  	position: absolute;
+  	top: 85%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    z-index: 5;
+    display:none;
+    font-family: 'Lato', sans-serif;
+}
+
+.week-selection{
+	padding-left: 1px;
+}
+
+input{
+	background-color: #D9C8B1;
+	border: 0px solid #000;
+}
+
+input.form-control{
+	background-color: #D9C8B1;
+	border: 0px solid #000;
+}
+
+/*
+  Hide radio button (the round disc)
+  we will use just the label to create pushbutton effect
+*/
+input[type=radio] {
+    display:none; 
+    margin:10px;
+}
+ 
+/*
+  Change the look'n'feel of labels (which are adjacent to radiobuttons).
+  Add some margin, padding to label
+*/
+input[type=radio] + label {
+    display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+    background-color: #e7e7e7;
+    border-color: #ddd;
+}
+/*
+ Change background color for label next to checked radio button
+ to make it look like highlighted button
+*/
+input[type=radio]:checked + label { 
+   background-image: none;
+    background-color:#d0d0d0;
+}
+
+li{
+	list-style-type: none;
+}
+
+
+/*
+  Hide radio button (the round disc)
+  we will use just the label to create pushbutton effect
+*/
+input[type=checkbox] {
+    display:none; 
+    margin:10px;
+}
+ 
+/*
+  Change the look'n'feel of labels (which are adjacent to radiobuttons).
+  Add some margin, padding to label
+*/
+input[type=checkbox] + label {
+    display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+    background-color: #e7e7e7;
+    border-color: #ddd;
+}
+/*
+ Change background color for label next to checked radio button
+ to make it look like highlighted button
+*/
+input[type=checkbox]:checked + label { 
+   background-image: none;
+    background-color:#d0d0d0;
+}
+
+li{
+	list-style-type: none;
+}
