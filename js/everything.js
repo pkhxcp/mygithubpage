@@ -172,7 +172,12 @@ function getTimeFromDec(hours){
     else{
         periodstring="am";
     }
+    if(Math.floor(hours)==0){
+        hourstring = "12";
+    }
+    else{
     hourstring = ""+Math.floor(hours)+"";
+    }
     minstring = ""+(hours-Math.floor(hours))*60+"";
     return ""+hourstring+":"+minstring+periodstring;
     
@@ -242,10 +247,16 @@ for(var i=0;i<course.length;i++){
 }
 
 for(var w=0; w<weekArray.length;w++){
-    weekArray[w].sort(function (a, b)
-    {
-        return a-b;
-    });
+    for(var m=0;m<weekArray[w].length;m++){
+        var temp;
+        var place = 0;
+        if(weekArray[w][m].startTime < weekArray[w][place].startTime){
+            temp = weekArray[w][place];
+            weekArray[w][place] = weekArray[w][m];
+            weekArray[w][m] = temp;
+            place++;
+        }
+    }
 }
 return weekArray;
 }
