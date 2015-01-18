@@ -64,12 +64,10 @@ document.getElementById("add-class-button").onclick = function() {
         if (endHour == 12)
             endHour = 0;
 
-//TODO move 'Number' up, change 12's to 0's
         var startTime = getTime(startHour, startMinute, startRadio);
 
         var endTime = getTime(endHour, endMinute, endRadio);
 
-        alert(startTime + " " + endTime);
 
         var course = {
             className: className,
@@ -138,6 +136,52 @@ document.getElementById("optimize-button").onclick = function() {
     //will become the set of all subsets of the COURSES array
     var restrictedPowerSet = getRestrictedPowerSet(COURSES, minClasses, maxClasses, minCredits, maxCredits);
 
+    if(count!=0){
+
+    for( var i=0; i<count ;i++){
+
+        animateout(i);
+    }
+    }
+    else{
+        $("#class-name-num0").animate({'marginTop':"-=1600px"},1000);
+    }
+
+     $("#class-modal-button").animate({
+           'marginTop':"-=1600px"},500);
+
+     $("#optimizer").animate({
+           'marginTop':"-=1600px"},500);
+
+    //  var num = 7;
+
+    //  for(var i =0; i<num; i++){
+    //     createTable(i);
+    //  }
+
+    //  var courserman = {
+    //         className: "asdfasdf",
+    //         creditHours: 3,
+    //         professor: "vradsaf",
+    //         startTime: 8.50,
+    //         endTime: 9.50,
+    //         days: ["M","Th","F"],
+    //         mustTake: true
+    //     }
+
+    //  addTime(courserman, 0,3);
+
+
+    //  var $coolguy = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(15.34)+'</div><div class="table-class">'+getDay(3)+'<div class="table-professor">'+getDuration(courserman)+'</div></div><div class="table-time-end">'+getTimeFromDec(17.53)+'</div></div>');
+    // $coolguy.css({'height':""+60.0*1.5+"px",
+    //                 'position':"relative"});
+    // $("#"+"monday"+"-div"+0+"").append($coolguy);
+
+
+      
+
+    
+
     finalCompile(restrictedPowerSet);
 
     //print the powerset to console
@@ -148,8 +192,6 @@ document.getElementById("optimize-button").onclick = function() {
         console.log("_______________");
     }
     
-    alert("print done, set size was " + COURSES.length + " classes, " +
-        restrictedPowerSet.length + " possible schedules generated");
 }
 
 function getTime(hours, minutes, period) {
@@ -166,7 +208,7 @@ function getTime(hours, minutes, period) {
 }
 
 function getDuration(course){
-    return (course.startTime-course.endTime)*60;
+    return Math.abs((course.startTime-course.endTime)*60);
 
 }
 
@@ -175,6 +217,7 @@ function getBreak(course1,course2){
 }
 
 function getTimeFromDec(hours){
+    var strinstring="";
     var hourstring= "";
     var minstring= "";
     var periodstring= "";
@@ -191,8 +234,9 @@ function getTimeFromDec(hours){
     else{
     hourstring = ""+Math.floor(hours)+"";
     }
-    minstring = ""+(hours-Math.floor(hours))*60+"";
-    return ""+hourstring+":"+minstring+periodstring;
+    minstring = ""+Math.floor((hours-Math.floor(hours))*60)+"";
+    stringstring= ""+hourstring+":"+minstring+periodstring;
+    return stringstring;
     
 }
 
@@ -209,16 +253,34 @@ function blankTime(duration,tablenum,day){
     var $coolguy = $('<div class="school"></div>');
     $coolguy.css({'height':""+duration*1.5+"px",
                     'background-color':"transparent"});
-    $("#"+day+"-div"+tablenum+"").append($coolguy);
+    $("#"+getDay(day)+"-div"+tablenum+"").append($coolguy);
 }
 
-function addTime(course,tablenum){
+function addTime(course,tablenum,day){
     var $coolguy = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(course.startTime)+'</div><div class="table-class">'+course.className+'<div class="table-professor">'+course.professor+'</div></div><div class="table-time-end">'+getTimeFromDec(course.endTime)+'</div></div>');
     $coolguy.css({'height':""+getDuration(course)*1.5+"px",
-                    'background-color':"transparent"});
+                    'position':"relative"});
+    $("#"+getDay(day)+"-div"+tablenum+"").append($coolguy);
 
-    //TODO figure out how to do days
-    $("#"+day+"-div"+tablenum+"").append($coolguy);
+
+
+
+
+    
+
+
+
+    // var $coolguy = $('<div class="school"></div>');
+    // $coolguy.css({'height':"720px"});
+    // $("#sunday-div0").append($coolguy);
+
+    // var $coolguy1 = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(getTime(8,15,"am"))+'</div><div class="table-class">EECS 338<div class="table-professor">T Pech</div></div><div class="table-time-end">9:15</div></div>');
+    // $coolguy1.css({'height':"67.5px",
+    //                 'position':"relative"});
+    // $("#monday-div0").append($coolguy1);
+
+    // blankTime(60,0,"monday");
+
 }
 
 function sortDays(course){
@@ -324,26 +386,23 @@ function finalCompile(BigArray){
         var wArr = sortDays(BigArray[i]);
         var latestTime = findLatest(wArr);
         var earliestTime = findEarliest(wArr);
+        createTable(i);
         for(var wday=0;wday<wArr.length;wday++){
             for(var course=0; course<wArr[wday].length; course++){
                 var currentTime=0;
                 //If the course's start time is the same as the earliest start time in the week
                 if(wArr[wday][course].startTime==earliestTime){
-                    var $coolguy = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(wArr[wday][course].startTime)+'</div><div class="table-class">'+wArr[wday][course].className+'<div class="table-professor">'+wArr[wday][course].professor+'</div></div><div class="table-time-end">'+getTimeFromDec(wArr[wday][course].endTime)+'</div></div>');
-                    $coolguy.css({'height':""+getDuration(wArr[wday][course])*1.5+"px"});
-                    $("#"+getDay(wday)+"-div"+i+"").append($coolguy);
+                    addTime(wArr[wday][course],i,wday);
                     currentTime=wArr[wday][course].endTime;
                 }
                 else{
                     //if the first course of the day is not the same as the earliest start time in the week and there is more courses after it
-                    if{course==0 && wArr[wday].length>1}{
-                        var $coolguy = $('<div class="school"></div>');
-                        $coolguy.css({'height':""+getBreak(wArr[wday][0],wArr[wday][1])*1.5+"px",
-                                    'background-color':"transparent"});
-                        $("#"+getDay(wday)+"-div"+i+"").append($coolguy);
+                    if(course==0 && wArr[wday].length>1){
+                        blankTime((getBreak(wArr[wday][0],wArr[wday][1])),i,wday);
                         currentTime=wArr[wday][course].startTime;
                         var $coolguy2 = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(wArr[wday][course].startTime)+'</div><div class="table-class">'+wArr[wday][course].className+'<div class="table-professor">'+wArr[wday][course].professor+'</div></div><div class="table-time-end">'+getTimeFromDec(wArr[wday][course].endTime)+'</div></div>');
-                        $coolguy2.css({'height':""+getDuration(wArr[wday][course])*1.5+"px"});
+                        $coolguy2.css({'height':""+getDuration(wArr[wday][course])*1.5+"px",
+                                        'position':"relative"});
                         $("#"+getDay(wday)+"-div"+i+"").append($coolguy2);
                         currentTime=wArr[wday][course].endTime;
                     }
@@ -351,13 +410,15 @@ function finalCompile(BigArray){
                     else if(wArr[wday].length==0){
                         var $coolguy = $('<div class="school"></div>');
                         $coolguy.css({'height':""+(latestTime-earliestTime)*1.5+"px",
-                                    'background-color':"transparent"});
+                                    'background-color':"transparent",
+                                    'position':"relative"});
                         $("#"+getDay(wday)+"-div"+i+"").append($coolguy);
                     }
                     //if the current time is equal to the start time of the current course
                     else if(currentTime==wArr[wday][course].startTime){
                         var $coolguy2 = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(wArr[wday][course].startTime)+'</div><div class="table-class">'+wArr[wday][course].className+'<div class="table-professor">'+wArr[wday][course].professor+'</div></div><div class="table-time-end">'+getTimeFromDec(wArr[wday][course].endTime)+'</div></div>');
-                        $coolguy2.css({'height':""+getDuration(wArr[wday][course])*1.5+"px"});
+                        $coolguy2.css({'height':""+getDuration(wArr[wday][course])*1.5+"px",
+                                    'position':"relative"});
                         $("#"+getDay(wday)+"-div"+i+"").append($coolguy2);
                         currentTime=wArr[wday][course].endTime;
                     }
@@ -365,11 +426,13 @@ function finalCompile(BigArray){
                     else if(currentTime!=wArr[wday][course].startTime){
                         var $coolguy = $('<div class="school"></div>');
                         $coolguy.css({'height':""+getBreak(currentTime,wArr[wday][course].startTime)*1.5+"px",
-                                    'background-color':"transparent"});
+                                    'background-color':"transparent",
+                                        'position':"relative"});
                         $("#"+getDay(wday)+"-div"+i+"").append($coolguy);
                         currentTime=wArr[wday][course].startTime;
                         var $coolguy2 = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(wArr[wday][course].startTime)+'</div><div class="table-class">'+wArr[wday][course].className+'<div class="table-professor">'+wArr[wday][course].professor+'</div></div><div class="table-time-end">'+getTimeFromDec(wArr[wday][course].endTime)+'</div></div>');
-                        $coolguy2.css({'height':""+getDuration(wArr[wday][course])*1.5+"px"});
+                        $coolguy2.css({'height':""+getDuration(wArr[wday][course])*1.5+"px",
+                                    'position':"relative"});
                         $("#"+getDay(wday)+"-div"+i+"").append($coolguy2);
                         currentTime=wArr[wday][course].endTime;
                     }
@@ -400,7 +463,6 @@ function getRestrictedPowerSet(coursesSet, minClasses, maxClasses, minCredits, m
             requiredClassNames.push(coursesSet[i].className);
     }
 
-    alert("number of required is " + requiredClassNames.length);
 
     var fullPowerSet = [[]];
     var partialPowerSet = [[]];
