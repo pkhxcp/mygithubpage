@@ -87,13 +87,14 @@
     						<h2>days of week</h2>
     						<form class="week" action="">
     							<span class="input-group-addon week-selection">
+                                    <input type="checkbox" name="day-week" value="Su" class="days" id="sunday"><label for="sunday">Sunday</label>
     								<input type="checkbox" name="day-week" value="M" class="days" id="monday"><label for="monday">Monday</label>
     								<input type="checkbox" name="day-week" value="Tu" class="days" id="tuesday"><label for="tuesday">Tuesday</label>
     								<input type="checkbox" name="day-week" value="W" class="days" id="wednesday"><label for="wednesday">Wednesday</label>
     								<input type="checkbox" name="day-week" value="Th" class="days" id="thursday"><label for="thursday">Thursday</label>
     								<input type="checkbox" name="day-week" value="F" class="days" id="friday"><label for="friday">Friday</label>
     								<input type="checkbox" name="day-week" value="Sa" class="days" id="saturday"><label for="saturday">Saturday</label>
-    								<input type="checkbox" name="day-week" value="Su" class="days" id="sunday"><label for="sunday">Sunday</label>
+
     							</span>
     						</form>
     						<h2>must take this semester (but not necessarily at this time)</h2>
@@ -170,7 +171,7 @@
     						</span>
     						<h2>sort by</h2>
     					</form>
-    					<button type="button" class="btn btn-close" data-dismiss="modal">close</button>
+    					<button type="button" class="btn btn-close" id="btn-opt-close" data-dismiss="modal">close</button>
     					<button type="button" class="btn btn-add-class" id="optimize-button">optimize</button>
     				</div>
     			</div>

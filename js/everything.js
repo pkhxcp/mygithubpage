@@ -3,7 +3,7 @@
 var COURSES = [];
 
 var isFirstEntry=true;
-var count = 1;
+var count = 0;
 var pixelthing = 0;
 var zindex=29;
 
@@ -91,6 +91,7 @@ document.getElementById("add-class-button").onclick = function() {
         isFirstEntry = false;
     }
     else{
+        count++;
         pixelthing+=73*count;
         var $newguy = $('<li><button type="button" class="class-btn-new" id="class-name-num'+count+'" >'+className+'</button></li>');
         $("#class-name-num"+(count-1)).append($newguy);
@@ -102,7 +103,7 @@ document.getElementById("add-class-button").onclick = function() {
         $("#class-modal-button").animate({
            'marginTop':"+=74px"},500);
         $("#class-name-num"+count).animate({'marginTop':+38},500);
-        count++;
+        
     }
 }
 
@@ -155,10 +156,41 @@ function getTime(hours, minutes, period) {
     return hours;
 }
 
-//Phil's crap
-// $("#optimizer").click(function(){
-//     $('#class-name-num').animate({'marginTop:':"-=375px"},500);
-// });
+function animateout(num){
+    $("#class-name-num"+num+"").animate({'marginTop':"-=1600px"},1000+50*num);
+}
+
+$("#btn-opt-close").click(function(){
+    if(count!=0){
+
+    for( var i=0; i<count ;i++){
+
+        animateout(i);
+    }
+}
+    else{
+        $("#class-name-num0").animate({'marginTop':"-=1600px"},1000);
+    }
+
+     $("#class-modal-button").animate({
+           'marginTop':"-=1600px"},500);
+
+     $("#optimizer").animate({
+           'marginTop':"-=1600px"},500);
+
+
+      var $newguy = $('<div class="table-divider"><table style="width:100%"><tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr><tr><td><div class="table-div sunday-div"></td><td><div class="table-div monday-div"></td><td><div class="table-div tuesday-div"></td><td><div class="table-div wednesday-div"></td><td><div class="table-div thursday-div"></td><td><div class="table-div friday-div"></td><td><div class="table-div saturday-div"></td></tr></table></div>');
+        $newguy.appendTo(document.body);
+
+        var $newguy1 = $('<div class="table-divider"><table style="width:100%"><tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr><tr><td><div class="table-div sunday-div"></td><td><div class="table-div monday-div"></td><td><div class="table-div tuesday-div"></td><td><div class="table-div wednesday-div"></td><td><div class="table-div thursday-div"></td><td><div class="table-div friday-div"></td><td><div class="table-div saturday-div"></td></tr></table></div>');
+        $newguy1.appendTo(document.body);
+
+
+
+
+    
+    //alert("fuckyou");
+});
 
 
 //returns a list of lists of classes that are possible schedule combinations

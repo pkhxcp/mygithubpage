@@ -63,6 +63,19 @@ li.select button{
 
 }
 
+div.table-divider{
+	margin: 30px;
+}
+
+table, th, td {
+	table-layout: fixed;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th,td {
+    padding: 15px;
+}
+
 .class-btn{
 	background-color: #bcd97d;
 	list-style-type: none;
