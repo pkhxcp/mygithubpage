@@ -156,10 +156,16 @@ function getTime(hours, minutes, period) {
     return hours;
 }
 
+function createTable(tablecount){
+    var $newguy = $('<div class="table-divider" id="table'+tablecount+'"><table style="width:100%"><tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr><tr><td><div class="table-div" id="sunday-div'+tablecount+'"></div></td><td><div class="table-div" id="monday-div'+tablecount+'"></div></td><td><div class="table-div" id="tuesday-div'+tablecount+'"></div></td><td><div class="table-div" id="wednesday-div'+tablecount+'"></div></td><td><div class="table-div" id="thursday-div'+tablecount+'"></div></td><td><div class="table-div" id="friday-div'+tablecount+'"></div></td><td><div class="table-div" id="saturday-div'+tablecount+'"></div></td></tr></table></div>');
+        $newguy.appendTo(document.body);
+}
+
 function animateout(num){
     $("#class-name-num"+num+"").animate({'marginTop':"-=1600px"},1000+50*num);
 }
 
+function makeSchedule(maxtime,mintime,)
 $("#btn-opt-close").click(function(){
     if(count!=0){
 
@@ -178,12 +184,28 @@ $("#btn-opt-close").click(function(){
      $("#optimizer").animate({
            'marginTop':"-=1600px"},500);
 
+     var num = 7;
 
-      var $newguy = $('<div class="table-divider"><table style="width:100%"><tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr><tr><td><div class="table-div sunday-div"></td><td><div class="table-div monday-div"></td><td><div class="table-div tuesday-div"></td><td><div class="table-div wednesday-div"></td><td><div class="table-div thursday-div"></td><td><div class="table-div friday-div"></td><td><div class="table-div saturday-div"></td></tr></table></div>');
-        $newguy.appendTo(document.body);
+     for(var i =0; i<num; i++){
+        createTable(i);
+     }
 
-        var $newguy1 = $('<div class="table-divider"><table style="width:100%"><tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr><tr><td><div class="table-div sunday-div"></td><td><div class="table-div monday-div"></td><td><div class="table-div tuesday-div"></td><td><div class="table-div wednesday-div"></td><td><div class="table-div thursday-div"></td><td><div class="table-div friday-div"></td><td><div class="table-div saturday-div"></td></tr></table></div>');
-        $newguy1.appendTo(document.body);
+
+      
+
+    var $coolguy = $('<div class="school"></div>');
+    $coolguy.css({'height':"720px"});
+    $("#sunday-div0").append($coolguy);
+
+    var $coolguy1 = $('<div class="school"><div class="table-time-start">8:15</div><div class="table-class">EECS 338<div class="table-professor">T Pech</div></div><div class="table-time-end">9:15</div></div>');
+    $coolguy1.css({'height':"67.5px",
+                    'position':"relative"});
+    $("#monday-div0").append($coolguy1);
+
+
+//TODO dynamic table gen
+        // var $newguy1 = $('<div class="table-divider"><table style="width:100%"><tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr><tr><td><div class="table-div sunday-div"></td><td><div class="table-div monday-div"></td><td><div class="table-div tuesday-div"></td><td><div class="table-div wednesday-div"></td><td><div class="table-div thursday-div"></td><td><div class="table-div friday-div"></td><td><div class="table-div saturday-div"></td></tr></table></div>');
+        // $newguy1.appendTo(document.body);
 
 
 
