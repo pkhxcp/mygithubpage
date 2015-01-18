@@ -138,6 +138,8 @@ document.getElementById("optimize-button").onclick = function() {
     //will become the set of all subsets of the COURSES array
     var restrictedPowerSet = getRestrictedPowerSet(COURSES, minClasses, maxClasses, minCredits, maxCredits);
 
+    finalCompile(restrictedPowerSet);
+
     //print the powerset to console
     for (var i = 0; i < restrictedPowerSet.length; i++) {
         for (var j = 0; j < restrictedPowerSet[i].length; j++) {
