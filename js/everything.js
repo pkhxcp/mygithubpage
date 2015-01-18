@@ -1,5 +1,11 @@
+
 //Globals
 var COURSES = [];
+
+var isFirstEntry=true;
+var count = 1;
+var pixelthing = 0;
+var zindex=29;
 
 document.getElementById("add-class-button").onclick = function() {
 
@@ -18,6 +24,8 @@ document.getElementById("add-class-button").onclick = function() {
     var end;
     var startRadio = "am";
     var endRadio = "am";
+
+
 
     for (var i = 0; i < numInputFields; i++) {
 
@@ -67,6 +75,34 @@ document.getElementById("add-class-button").onclick = function() {
         };
 
         COURSES[COURSES.length] = course;
+    }
+
+
+
+    if(isFirstEntry){
+        var $newguy = $('<li><button type="button" class="class-btn" id="class-name-num0" >'+className+'</button></li>');
+        $("#class-name-num0").css({'display':"block"});
+        $("#class-listing").append($newguy);
+        $("#class-name-num0").animate({'marginTop':-375},500);
+        $("#class-modal-button").animate({
+           'marginTop':"-=302px"},500)
+        .parent().css('z-index', 9),
+        $("#optimizer").fadeIn()
+        isFirstEntry = false;
+    }
+    else{
+        pixelthing+=73*count;
+        var $newguy = $('<li><button type="button" class="class-btn-new" id="class-name-num'+count+'" >'+className+'</button></li>');
+        $("#class-name-num"+(count-1)).append($newguy);
+        $("#class-name-num"+count).css({'display':"block"//,
+                                        //'z-index': ""+zindex
+                                        //'top':"calc(inherit+30px)"
+                                    });
+                                    zindex--;
+        $("#class-modal-button").animate({
+           'marginTop':"+=74px"},500);
+        $("#class-name-num"+count).animate({'marginTop':+38},500);
+        count++;
     }
 }
 
@@ -119,9 +155,14 @@ function getTime(hours, minutes, period) {
     return hours;
 }
 
+//Phil's crap
+// $("#optimizer").click(function(){
+//     $('#class-name-num').animate({'marginTop:':"-=375px"},500);
+// });
+
+
 //returns a list of lists of classes that are possible schedule combinations
 function getRestrictedPowerSet(coursesSet, minClasses, maxClasses, minCredits, maxCredits) {
-
 
     //TODO ensure the "must take" classes are actually required
 
@@ -198,6 +239,3 @@ function containsCourse(classSet, className) {
     }
     return false;
 }
-
-
-

@@ -33,7 +33,6 @@
 
     <body>
     	<script src="js/clockpicker.js"></script>
-
     	<!--class adder-->
     	<div class="container">
     		<ul class = "class-list" id="class-listing">
@@ -100,17 +99,17 @@
     						<h2>must take this semester (but not necessarily at this time)</h2>
     						<div class="center">
     							<span class="input-group-addon">
-    								<input type="radio" name="semester-req" id="semester-radio-yes">
+    								<input type="radio" class="btn" name="semester-req" id="semester-radio-yes">
     								<label for="semester-radio-yes">yes</label>
-    								<input type="radio" name="semester-req" id="semester-radio-no">
+    								<input type="radio" class="btn" name="semester-req" id="semester-radio-no">
     								<label for="semester-radio-no">no</label>
     							</span>
     						</div>
     						<div class="center">
 
     							<span class ="input-group-addon final-buttons">
-    								<button type="button" class="btn btn-close" data-dismiss="modal">close</button>
-    								<button type="button" class="btn btn-add-class" id="add-class-button">add class</button>
+    								<button type="button" class="btn btn-close" data-dismiss="modal" id="cancel-btn">close</button>
+    								<button type="button" class="btn btn-add-class" data-dismiss="modal" id="add-class-button">add class</button>
     							</span>
     						</div>
     					</form>
