@@ -127,6 +127,10 @@ li.select button{
     font-family: 'Lato', sans-serif;
 }
 
+.week-selection{
+	padding-left: 1px;
+}
+
 input{
 	background-color: #D9C8B1;
 	border: 0px solid #000;
@@ -178,6 +182,56 @@ input[type=radio] + label {
  to make it look like highlighted button
 */
 input[type=radio]:checked + label { 
+   background-image: none;
+    background-color:#d0d0d0;
+}
+
+li{
+	list-style-type: none;
+}
+
+
+/*
+  Hide radio button (the round disc)
+  we will use just the label to create pushbutton effect
+*/
+input[type=checkbox] {
+    display:none; 
+    margin:10px;
+}
+ 
+/*
+  Change the look'n'feel of labels (which are adjacent to radiobuttons).
+  Add some margin, padding to label
+*/
+input[type=checkbox] + label {
+    display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+    background-color: #e7e7e7;
+    border-color: #ddd;
+}
+/*
+ Change background color for label next to checked radio button
+ to make it look like highlighted button
+*/
+input[type=checkbox]:checked + label { 
    background-image: none;
     background-color:#d0d0d0;
 }
