@@ -2,6 +2,11 @@
 //Globals
 var COURSES = [];
 
+var isFirstEntry=true;
+var count = 1;
+var pixelthing = 0;
+var zindex=29;
+
 document.getElementById("add-class-button").onclick = function() {
 
     var className = document.getElementById("class-name").value;
@@ -71,6 +76,34 @@ document.getElementById("add-class-button").onclick = function() {
 
         COURSES[COURSES.length] = course;
     }
+
+
+
+    if(isFirstEntry){
+        var $newguy = $('<li><button type="button" class="class-btn" id="class-name-num0" >'+className+'</button></li>');
+        $("#class-name-num0").css({'display':"block"});
+        $("#class-listing").append($newguy);
+        $("#class-name-num0").animate({'marginTop':-375},500);
+        $("#class-modal-button").animate({
+           'marginTop':"-=302px"},500)
+        .parent().css('z-index', 9),
+        $("#optimizer").fadeIn()
+        isFirstEntry = false;
+    }
+    else{
+        pixelthing+=73*count;
+        var $newguy = $('<li><button type="button" class="class-btn-new" id="class-name-num'+count+'" >'+className+'</button></li>');
+        $("#class-name-num"+(count-1)).append($newguy);
+        $("#class-name-num"+count).css({'display':"block"//,
+                                        //'z-index': ""+zindex
+                                        //'top':"calc(inherit+30px)"
+                                    });
+                                    zindex--;
+        $("#class-modal-button").animate({
+           'marginTop':"+=74px"},500);
+        $("#class-name-num"+count).animate({'marginTop':+38},500);
+        count++;
+    }
 }
 
 
@@ -122,42 +155,10 @@ function getTime(hours, minutes, period) {
     return hours;
 }
 
-var isFirstEntry=true;
-var count = 1;
-var pixelthing = 0;
-var zindex=29;
-//replace #cancel-btn with add class and button info with new class shit
-$( "#cancel-btn" ).click(function() {
-    if(isFirstEntry){
-        var $newguy = $('<li><button type="button" class="class-btn" id="class-name-num0" data-toggle="modal" data-target="#class-modal">class_name</button></li>');
-        $("#class-name-num0").css({'display':"block"});
-        $("#class-listing").append($newguy);
-        $("#class-name-num0").animate({'marginTop':-375},500);
-        $("#class-modal-button").animate({
-           'marginTop':"-=302px"},500)
-        .parent().css('z-index', 9),
-        $("#optimizer").fadeIn()
-        isFirstEntry = false;
-    }
-    else{
-        pixelthing+=73*count;
-        var $newguy = $('<li><button type="button" class="class-btn-new" id="class-name-num'+count+'" data-toggle="modal" data-target="#class-modal">class_name</button></li>');
-        $("#class-name-num"+(count-1)).append($newguy);
-        $("#class-name-num"+count).css({'display':"block"//,
-                                        //'z-index': ""+zindex
-                                        //'top':"calc(inherit+30px)"
-                                    });
-                                    zindex--;
-        $("#class-modal-button").animate({
-           'marginTop':"+=73px"},500);
-        $("#class-name-num"+count).animate({'marginTop':+38},500);
-        count++;
-    }
-});
-
-$("#optimizer").click(function(){
-    $('#class-name-num').animate({'marginTop:':"-=375px"},500);
-});
+//Phil's crap
+// $("#optimizer").click(function(){
+//     $('#class-name-num').animate({'marginTop:':"-=375px"},500);
+// });
 
 
 //returns a list of lists of classes that are possible schedule combinations
