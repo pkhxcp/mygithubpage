@@ -208,7 +208,7 @@ function getTime(hours, minutes, period) {
 }
 
 function getDuration(course){
-    return Math.abs((course.startTime-course.endTime)*60);
+    return (course.endTime-course.startTime)*60;
 
 }
 
@@ -252,7 +252,8 @@ function animateout(num){
 function blankTime(duration,tablenum,day){
     var $coolguy = $('<div class="school"></div>');
     $coolguy.css({'height':""+duration*1.5+"px",
-                    'background-color':"transparent"});
+                    'background-color':"transparent",
+                    'position':"relative"});
     $("#"+getDay(day)+"-div"+tablenum+"").append($coolguy);
 }
 
@@ -389,7 +390,9 @@ function finalCompile(BigArray){
         createTable(i);
         for(var wday=0;wday<wArr.length;wday++){
             for(var course=0; course<wArr[wday].length; course++){
-                var currentTime=0;
+                var currentTime=earliestTime;
+                console.log("This is early:"+currentTime);
+                console.log("This is the next time:"+wArr[wday][course].startTime);
                 //If the course's start time is the same as the earliest start time in the week
                 if(wArr[wday][course].startTime==earliestTime){
                     addTime(wArr[wday][course],i,wday);
@@ -398,7 +401,7 @@ function finalCompile(BigArray){
                 else{
                     //if the first course of the day is not the same as the earliest start time in the week and there is more courses after it
                     if(course==0 && wArr[wday].length>1){
-                        blankTime((getBreak(wArr[wday][0],wArr[wday][1])),i,wday);
+                        blankTime((wArr[wday][0].startTime-earliestTime),i,wday);
                         currentTime=wArr[wday][course].startTime;
                         var $coolguy2 = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(wArr[wday][course].startTime)+'</div><div class="table-class">'+wArr[wday][course].className+'<div class="table-professor">'+wArr[wday][course].professor+'</div></div><div class="table-time-end">'+getTimeFromDec(wArr[wday][course].endTime)+'</div></div>');
                         $coolguy2.css({'height':""+getDuration(wArr[wday][course])*1.5+"px",
@@ -425,7 +428,7 @@ function finalCompile(BigArray){
                     //if the current time is not equal to the start time of the current course, it implies there is a break.
                     else if(currentTime!=wArr[wday][course].startTime){
                         var $coolguy = $('<div class="school"></div>');
-                        $coolguy.css({'height':""+getBreak(currentTime,wArr[wday][course].startTime)*1.5+"px",
+                        $coolguy.css({'height':""+(wArr[wday][course].startTime-currentTime)*60*1.5+"px",
                                     'background-color':"transparent",
                                         'position':"relative"});
                         $("#"+getDay(wday)+"-div"+i+"").append($coolguy);
