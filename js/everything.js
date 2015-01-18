@@ -53,16 +53,23 @@ document.getElementById("add-class-button").onclick = function() {
         var endHour = end.substring(0,2);
         var endMinute = end.substring(3,5);
 
-        startHour = removeFrontZero(startHour);
-        startMinute = removeFrontZero(startMinute);
-        endHour = removeFrontZero(endHour);
-        endMinute = removeFrontZero(endMinute);
+        startHour = Number(removeFrontZero(startHour));
+        startMinute = Number(removeFrontZero(startMinute));
+        endHour = Number(removeFrontZero(endHour));
+        endMinute = Number(removeFrontZero(endMinute));
 
+        if (startHour == 12)
+            startHour = 0;
+
+        if (endHour == 12)
+            endHour = 0;
 
 //TODO move 'Number' up, change 12's to 0's
-        var startTime = getTime(Number(startHour), Number(startMinute), startRadio);
+        var startTime = getTime(startHour, startMinute, startRadio);
 
-        var endTime = getTime(Number(endHour), Number(endMinute), endRadio);
+        var endTime = getTime(endHour, endMinute, endRadio);
+
+        alert(startTime + " " + endTime);
 
         var course = {
             className: className,
