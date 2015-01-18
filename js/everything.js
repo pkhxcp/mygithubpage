@@ -204,6 +204,55 @@ function addTime(course,tablenum){
     $("#"+day+"-div"+tablenum+"").append($coolguy);
 }
 
+function sortDays(course){
+
+var MArray =[];
+var TuArray=[];
+var WArray=[];
+var ThArray=[];
+var FArray=[];
+var SaArray=[];
+var SuArray=[];
+var weekArray = [SuArray,MArray,TuArray,WArray,ThArray,FArray,SaArray];
+
+for(var i=0;i<course.length;i++){
+    for(var j=0;j<course.days.length;j++){
+        if(course.days[j]=="Su"){
+            SuArray.push(course);
+        }
+        else if(course.days[j]=="M"){
+            MArray.push(course);
+        }
+        else if(course.days[j]=="Tu"){
+            TuArray.push(course);
+        }
+        else if(course.days[j]=="W"){
+            WArray.push(course);
+        }
+        else if(course.days[j]=="Th"){
+            ThArray.push(course);
+        }
+        else if(course.days[j]=="F"){
+            FArray.push(course);
+        }
+        else if(course.days[j]=="Sa"){
+            SaArray.push(course);
+        }
+    }
+}
+
+for(var w=0; w<weekArray.length;w++){
+    weekArray[w].sort(function (a, b)
+    {
+        return a-b;
+    });
+}
+return weekArray;
+}
+
+
+
+
 //tools at disposal: blankTime, addTime, createTable, getDuration, getTimeFromDec
 
 
