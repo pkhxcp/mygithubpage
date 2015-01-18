@@ -42,13 +42,10 @@ ul.class-list{
 	text-align: center;
 }
 
-li.select{
+li.select button{
 	list-style-type: none;
 	font-size: 50px;
 	display: inline-block;
-}
-
-li.select button{
 	border: 0px solid #000;
   	font-weight: bold;
   	background-color: #D9C87B;
@@ -61,7 +58,72 @@ li.select button{
   	-moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
+    z-index: 10;
+    font-family: 'Lato', sans-serif;
 
+}
+
+.class-btn{
+	background-color: #bcd97d;
+	list-style-type: none;
+	font-size: 50px;
+	display: inline-block;
+	border: 0px solid #000;
+  	font-weight: bold;
+  	width: 500px;
+  	text-align: center;
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    z-index: 30;
+    font-family: 'Lato', sans-serif;
+
+}
+
+.class-btn-new{
+	background-color: #bcd97d;
+	list-style-type: none;
+	font-size: 50px;
+	display: inline-block;
+	border: 0px solid #000;
+  	font-weight: bold;
+  	width: 500px;
+  	text-align: center;
+  	position: absolute;
+  	left: 50%;
+  	top: calc(inherit-30px);
+  	transform: translate(-50%, -50%);
+  	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+    z-index: 0;
+
+}
+
+.optimize{
+	list-style-type: none;
+	font-size: 50px;
+	display: inline-block;
+	border: 0px solid #000;
+  	font-weight: bold;
+  	background-color: #80E39E;
+  	width: 500px;
+  	text-align: center;
+  	position: absolute;
+  	top: 85%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    z-index: 5;
+    display:none;
+    font-family: 'Lato', sans-serif;
 }
 
 input{
@@ -72,4 +134,53 @@ input{
 input.form-control{
 	background-color: #D9C8B1;
 	border: 0px solid #000;
+}
+
+/*
+  Hide radio button (the round disc)
+  we will use just the label to create pushbutton effect
+*/
+input[type=radio] {
+    display:none; 
+    margin:10px;
+}
+ 
+/*
+  Change the look'n'feel of labels (which are adjacent to radiobuttons).
+  Add some margin, padding to label
+*/
+input[type=radio] + label {
+    display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+    background-color: #e7e7e7;
+    border-color: #ddd;
+}
+/*
+ Change background color for label next to checked radio button
+ to make it look like highlighted button
+*/
+input[type=radio]:checked + label { 
+   background-image: none;
+    background-color:#d0d0d0;
+}
+
+li{
+	list-style-type: none;
 }
