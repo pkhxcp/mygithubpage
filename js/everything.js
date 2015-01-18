@@ -272,20 +272,22 @@ return weekArray;
 }
 
 function findEarliest(weekArray){
-    var earliest = weekArray[0][0].startTime;
-    for(var i=1; i<weekArray.length; i++){
-        if(weekArray[i][0].startTime<earliest){
-            earliest = weekArray[i][0].startTime;
+    var earliest = 10000;
+    for(var i=0; i<weekArray.length; i++){
+        for(var j=0; j<weekArray[i].length; j++){
+            if(weekArray[i][j].startTime<earliest)
+                earliest = weekArray[i][j].startTime;
         }
     }
     return earliest;
 }
 
 function findLatest(weekArray){
-    var latest = weekArray[0][weekArray[0].length-1].endTime;
-    for(var i=1; i<weekArray.length; i++){
-        if(weekArray[i][weekArray[i].length-1].endtTime>latest){
-            latest = weekArray[i][weekArray[i].length-1].endTime;
+    var latest = 0;
+    for(var i=0; i<weekArray.length; i++){
+        for(var j=0; j<weekArray[i].length; j++){
+            if(weekArray[i][j].endTime > latest)
+                latest = weekArray[i][j].endTime;
         }
     }
     return latest;
