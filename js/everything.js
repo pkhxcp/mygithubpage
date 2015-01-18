@@ -25,8 +25,6 @@ document.getElementById("add-class-button").onclick = function() {
     var startRadio = "am";
     var endRadio = "am";
 
-
-
     for (var i = 0; i < numInputFields; i++) {
 
         if (inputFields[i].type == 'checkbox' &&
@@ -55,14 +53,23 @@ document.getElementById("add-class-button").onclick = function() {
         var endHour = end.substring(0,2);
         var endMinute = end.substring(3,5);
 
-        startHour = removeFrontZero(startHour);
-        startMinute = removeFrontZero(startMinute);
-        endHour = removeFrontZero(endHour);
-        endMinute = removeFrontZero(endMinute);
+        startHour = Number(removeFrontZero(startHour));
+        startMinute = Number(removeFrontZero(startMinute));
+        endHour = Number(removeFrontZero(endHour));
+        endMinute = Number(removeFrontZero(endMinute));
 
-        var startTime = getTime(Number(startHour), Number(startMinute), startRadio);
+        if (startHour == 12)
+            startHour = 0;
 
-        var endTime = getTime(Number(endHour), Number(endMinute), endRadio);
+        if (endHour == 12)
+            endHour = 0;
+
+//TODO move 'Number' up, change 12's to 0's
+        var startTime = getTime(startHour, startMinute, startRadio);
+
+        var endTime = getTime(endHour, endMinute, endRadio);
+
+        alert(startTime + " " + endTime);
 
         var course = {
             className: className,
@@ -134,7 +141,7 @@ document.getElementById("optimize-button").onclick = function() {
     //print the powerset to console
     for (var i = 0; i < restrictedPowerSet.length; i++) {
         for (var j = 0; j < restrictedPowerSet[i].length; j++) {
-            console.log(restrictedPowerSet[i][j].className + " " + restrictedPowerSet[i][j].professor);
+            console.log(restrictedPowerSet[i][j].className + " " + restrictedPowerSet[i][j].creditHours + " " + restrictedPowerSet[i][j].professor + " " + restrictedPowerSet[i][j].startTime + " " + restrictedPowerSet[i][j].endTime + " " + restrictedPowerSet[i][j].days.toString() + " " + restrictedPowerSet[i][j].mustTake);
         }
         console.log("_______________");
     }
@@ -329,59 +336,84 @@ $("#btn-opt-close").click(function(){
 //returns a list of lists of classes that are possible schedule combinations
 function getRestrictedPowerSet(coursesSet, minClasses, maxClasses, minCredits, maxCredits) {
 
-    //TODO ensure the "must take" classes are actually required
+    var requiredClassNames = [];
 
+    for (var i = 0; i < coursesSet.length; i++) {
+        if (coursesSet[i].mustTake && !nameSetContains(requiredClassNames, coursesSet[i].className)) 
+            requiredClassNames.push(coursesSet[i].className);
+    }
+
+    alert("number of required is " + requiredClassNames.length);
 
     var fullPowerSet = [[]];
     var partialPowerSet = [[]];
     
-    console.log("1");
 
     for (var i=0; i < coursesSet.length; i++) {
-        console.log("2");
+
         for (var j = 0, powerSetLength = fullPowerSet.length; j < powerSetLength; j++) {
-            console.log("3");
+            
             //prevents the same class from occurring more than once in a schedule.
             //this can occur when a class is offered at multiple times and/or by multiple professors
-            if(!containsCourse(fullPowerSet[j], coursesSet[i].className)) {
-                console.log("4");
+            //
+            //also prevents the class from being added if it overlaps with any other class
+            if(!containsCourse(fullPowerSet[j], coursesSet[i].className) &&
+                !overlaps(coursesSet[i], fullPowerSet[j])) {
+ 
 
                 //a potential schedule, lets see if it fits our criteria
                 var candidateSet = fullPowerSet[j].concat(coursesSet[i]);
+
                 var CandidateIsValid = true;
 
                 if (candidateSet.length < minClasses || candidateSet.length > maxClasses) {
-                    console.log("5 false " + candidateSet.length);
+
                     CandidateIsValid = false;
                 }
                 else {
-                    console.log("6");
+     
 
                     var total = sumCreditHours(candidateSet);
 
                     if(total > maxCredits || total < minCredits) {
-                        console.log("7 false");
+              
                         CandidateIsValid = false;
                     }
                     else {
-                        console.log("8");
-
-                    
 
 
-                        //prevent overlapping times
+                        //check that candidate set has all of the classes marked as 'must take'
+                        for (var k = 0; k < requiredClassNames.length; k++) {
+                            var weGucci = false;
+
+                            for (var m = 0; m < candidateSet.length; m++) {
+                                if (candidateSet[m].className == requiredClassNames[k]) {
+                                    weGucci = true;
+                                    break;
+                                }
+                            }
+
+                            if(!weGucci) {
+                                CandidateIsValid = false;
+                                break;
+                            }
+                        }
                     }
                 }
 
                 //only add valid candidates to the partial powerset
-                if (CandidateIsValid)
+                //and only if they are not already in the partial powerset
+                if (CandidateIsValid && !contains(partialPowerSet, candidateSet)) {
                     partialPowerSet.push(candidateSet);
+                }
             }
 
             //alway add candidate set to fullPowerSet
             fullPowerSet.push(candidateSet);
         }
     }
+    //get rid of the first element because 
+    partialPowerSet.shift();
     return partialPowerSet;
 }
 
@@ -404,3 +436,136 @@ function containsCourse(classSet, className) {
     }
     return false;
 }
+
+function nameSetContains(nameSet, name) {
+    for (var i = 0; i < nameSet.length; i ++) {
+        if (nameSet[i] == name)
+            return true;
+    }
+    return false;
+}
+
+//determines whether the given course overlaps with any in courseList
+function overlaps(course, courseList) {
+
+    for (var i = 0; i < courseList.length; i++) {
+
+        if (overlapsWith(courseList[i], course))
+            return true;
+    }
+    return false;
+}
+
+function overlapsWith(course1, course2) {
+    
+    var sharedDays = intersect(course1.days, course2.days);
+
+    if(sharedDays.length > 0) {
+
+        if (course1.startTime != course2.startTime &&
+            course1.endTime != course2.endTime &&
+            !isBetween(course1.startTime, course2.startTime, course1.endTime) && 
+            !isBetween(course1.startTime, course2.endTime, course1.endTime)) {
+            return false
+        }
+        else
+            return true;
+    }
+    return false;
+}
+
+//finds the intersection of two arrays
+function intersect(a, b) {
+    var tmp;
+    if (b.length > a.length)
+        tmp = b, b = a, a = tmp; // indexOf to loop over shorter
+    return a.filter(
+        function (e) {
+            if (b.indexOf(e) !== -1)
+                return true;
+        }
+    );
+}
+
+//is the 2nd param between the first and third? (exclusive)
+function isBetween(a, b, c) {
+    if (a < b && b < c)
+        return true;
+    else return false;
+}
+
+//set MUST be a list of schedules and element MUST be a schedule
+function contains(set, element) {
+    for (var i = 0; i < set.length; i++) {
+        if (schedulesAreEqual(set[i], element))
+            return true;
+    }
+    return false;
+}
+
+function schedulesAreEqual(schedule1, schedule2) {
+
+    if (schedule1.length != schedule2.length)
+        return false;
+
+    var numEqual = 0;
+
+    for (var i = 0; i < schedule1.length; i++) {
+
+        for (var j = 0; j < schedule2.length; j++) {
+
+            if (coursesAreEqual(schedule1[i], schedule2[j])) {
+                numEqual++;
+            }
+        }
+    }
+    if (numEqual == schedule1.length) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function coursesAreEqual(course1, course2) {
+
+    if (course1.className == course2.className &&
+        course1.creditHours == course2.creditHours &&
+        course1.professor == course2.professor &&
+        course1.startTime == course2.startTime &&
+        course1.endTime == course2.endTime &&
+        arraysAreEqual(course1.days, course2.days) &&
+        course1.mustTake == course2.mustTake) {
+
+        return true;
+    }
+    else
+        return false;
+}
+        
+function arraysAreEqual(array1, array2) {
+
+    if (array1.length != array2.length)
+        return false;
+
+    for (var i = 0; i < array1.length; i++) {
+
+        if (array1[i] != array2[i])
+            return false;
+    }
+    return true;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
