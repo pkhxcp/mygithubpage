@@ -1,3 +1,6 @@
+//Globals
+var COURSES = [];
+
 document.getElementById("add-class-button").onclick = function() {
 
     var className = document.getElementById("class-name").value;
@@ -53,10 +56,21 @@ document.getElementById("add-class-button").onclick = function() {
 
         var endTime = getTime(Number(endHour), Number(endMinute), endRadio);
 
-        //also have array called checkedDays
-        alert("yo \n" + className + "\n" + creditHours + "\n" + professor + "\n" + startTime + "\n" + endTime + "\n" + mustTake);
+        var course = {
+            className: className,
+            creditHours: creditHours,
+            professor: professor,
+            startTime: startTime,
+            endTime: endTime,
+            days: checkedDays,
+            mustTake: mustTake
+        };
+
+        COURSES[COURSES.length] = course;
     }
 }
+
+
 
 function removeFrontZero(input) {
 
@@ -69,17 +83,27 @@ function removeFrontZero(input) {
 
 document.getElementById("optimize-button").onclick = function() {
 
-    alert("hooptimizing...");
-
     var minClasses = document.getElementById("min-classes").value;
     var maxClasses = document.getElementById("max-classes").value;
     var minCredits = document.getElementById("min-hours").value;
     var maxCredits = document.getElementById("max-hours").value;
 
+    console.log(minClasses + " " + maxClasses + " " + minCredits + " " + maxCredits);
 
-    alert(minClasses + " " + maxClasses + " " + minCredits + " " + maxCredits);
+
+    //will become the set of all subsets of the COURSES array
+    var restrictedPowerSet = getRestrictedPowerSet(COURSES, minClasses, maxClasses, minCredits, maxCredits);
+
+    //print the powerset to console
+    for (var i = 0; i < restrictedPowerSet.length; i++) {
+        for (var j = 0; j < restrictedPowerSet[i].length; j++) {
+            console.log(restrictedPowerSet[i][j].className + " " + restrictedPowerSet[i][j].professor);
+        }
+        console.log("_______________");
+    }
     
-
+    alert("print done, set size was " + COURSES.length + " classes, " +
+        restrictedPowerSet.length + " possible schedules generated");
 }
 
 function getTime(hours, minutes, period) {
@@ -94,3 +118,70 @@ function getTime(hours, minutes, period) {
 
     return hours;
 }
+
+
+
+
+//returns a list of lists of classes that are possible schedule combinations
+function getRestrictedPowerSet(coursesSet, minClasses, maxClasses, minCredits, maxCredits) {
+
+    var powerSet = [[]];
+
+    for (var i=0; i < coursesSet.length; i++) {
+        for (var j = 0, powerSetLength = powerSet.length; j < powerSetLength; j++) {
+            
+            //prevents the same class from occurring more than once in a schedule.
+            //this can occur when a class is offered at multiple times and/or by multiple professors
+            if(!containsCourse(powerSet[j], coursesSet[i].className)) {
+
+                //a potential schedule, lets see if it fits our criteria
+                var candidateSet = powerSet[j].concat(coursesSet[i]);
+                var CandidateIsValid = true;
+
+                if (candidateSet.length < minClasses || candidateSet.length > maxClasses)
+                    CandidateIsValid = false;
+                else {
+
+                    var total = sumCreditHours(candidateSet);
+
+                    if(total > maxCredits || total < minCredits)
+                        CandidateIsValid = false;
+                    else {
+
+                    
+
+
+                        //prevent overlapping times
+                    }
+                }
+
+                if (CandidateIsValid)
+                    powerSet.push(candidateSet);
+            }
+        }
+    }
+    return powerSet;
+}
+
+function sumCreditHours(candidateSet) {
+
+    var sum = 0;
+
+    for (var i = 0; i < candidateSet.length; i++) {
+        sum += Number(candidateSet[i].creditHours);
+    }
+
+    return sum;
+}
+
+function containsCourse(classSet, className) {
+
+    for (var i = 0; i < classSet.length; i++) {
+        if (classSet[i].className == className)
+            return false;
+    }
+    return true;
+}
+
+
+
