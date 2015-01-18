@@ -168,6 +168,10 @@ function getDuration(course){
 
 }
 
+function getBreak(course1,course2){
+    return (course1.endTime-course2.startTime)*60;
+}
+
 function getTimeFromDec(hours){
     var hourstring= "";
     var minstring= "";
@@ -188,7 +192,6 @@ function getTimeFromDec(hours){
     minstring = ""+(hours-Math.floor(hours))*60+"";
     return ""+hourstring+":"+minstring+periodstring;
     
-
 }
 
 function createTable(tablecount){
@@ -228,27 +231,27 @@ var SuArray=[];
 var weekArray = [SuArray,MArray,TuArray,WArray,ThArray,FArray,SaArray];
 
 for(var i=0;i<course.length;i++){
-    for(var j=0;j<course.days.length;j++){
-        if(course.days[j]=="Su"){
-            SuArray.push(course);
+    for(var j=0;j<course[i].days.length;j++){
+        if(course[i].days[j]=="Su"){
+            SuArray.push(course[i]);
         }
-        else if(course.days[j]=="M"){
-            MArray.push(course);
+        else if(course[i].days[j]=="M"){
+            MArray.push(course[i]);
         }
-        else if(course.days[j]=="Tu"){
-            TuArray.push(course);
+        else if(course[i].days[j]=="Tu"){
+            TuArray.push(course[i]);
         }
-        else if(course.days[j]=="W"){
-            WArray.push(course);
+        else if(course[i].days[j]=="W"){
+            WArray.push(course[i]);
         }
-        else if(course.days[j]=="Th"){
-            ThArray.push(course);
+        else if(course[i].days[j]=="Th"){
+            ThArray.push(course[i]);
         }
-        else if(course.days[j]=="F"){
-            FArray.push(course);
+        else if(course[i].days[j]=="F"){
+            FArray.push(course[i]);
         }
-        else if(course.days[j]=="Sa"){
-            SaArray.push(course);
+        else if(course[i].days[j]=="Sa"){
+            SaArray.push(course[i]);
         }
     }
 }
@@ -266,6 +269,94 @@ for(var w=0; w<weekArray.length;w++){
     }
 }
 return weekArray;
+}
+
+function findEarliest(weekArray){
+    var earliest = weekArray[0][0].startTime;
+    for(var i=1; i<weekArray.length; i++){
+        if(weekArray[i][0].startTime<earliest){
+            earliest = weekArray[i][0].startTime;
+        }
+    }
+    return earliest;
+}
+
+function findLatest(weekArray){
+    var latest = weekArray[0][weekArray[0].length-1].endTime;
+    for(var i=1; i<weekArray.length; i++){
+        if(weekArray[i][weekArray[i].length-1].endtTime>latest){
+            latest = weekArray[i][weekArray[i].length-1].endTime;
+        }
+    }
+    return latest;
+}
+
+function getDay(wday){
+    if(wday==0){
+        return "sunday";
+    }
+    else if(wday==1){
+        return "monday";
+    }
+    else if(wday==2){
+        return "tuesday";
+    }
+    else if(wday==3){
+        return "wednesday";
+    }
+    else if(wday==4){
+        return "thursday";
+    }
+    else if(wday==5){
+        return "friday";
+    }
+    else if(wday==6){
+        return "saturday";
+    }
+}
+
+function finalCompile(BigArray){
+    for(var i=0; i<BigArray.length; i++){
+        var wArr = sortDays(BigArray[i]);
+        var latestTime = findLatest(wArr);
+        var earliestTime = findEarliest(wArr);
+        for(var wday=0;wday<wArr.length;wday++){
+            for(var course=0; course<wArr[wday].length; course++){
+                var currentTime=0;
+                //If the course's start time is the same as the earliest start time in the week
+                if(wArr[wday][course].startTime==earliestTime){
+                    var $coolguy = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(wArr[wday][course].startTime)+'</div><div class="table-class">'+wArr[wday][course].className+'<div class="table-professor">'+wArr[wday][course].professor+'</div></div><div class="table-time-end">'+getTimeFromDec(wArr[wday][course].endTime)+'</div></div>');
+                    $coolguy.css({'height':""+getDuration(wArr[wday][course])*1.5+"px"});
+                    $("#"+getDay(wday)+"-div"+i+"").append($coolguy);
+                    currentTime=wArr[wday][course].endTime;
+                }
+                else{
+                    //if the first course of the day is not the same as the earliest start time in the week
+                    if{course==0 && wArr[wday].length>0}{
+                        var $coolguy = $('<div class="school"></div>');
+                        $coolguy.css({'height':""+getBreak(wArr[wday][0],wArr[wday][1])*1.5+"px",
+                                    'background-color':"transparent"});
+                        $("#"+getDay(wday)+"-div"+i+"").append($coolguy);
+                        currenTime=wArr[wday][course].startTime;
+                    }
+                    //if the day has no courses
+                    else if(wArr[wday].length==0){
+                        var $coolguy = $('<div class="school"></div>');
+                        $coolguy.css({'height':""+(latestTime-earliestTime)*1.5+"px",
+                                    'background-color':"transparent"});
+                        $("#"+getDay(wday)+"-div"+i+"").append($coolguy);
+                    }
+                    else if()
+
+                    var $coolguy = $('<div class="school"></div>');
+                    $coolguy.css({'height':""+duration*1.5+"px",
+                                    'background-color':"transparent"});
+                    $("#"+day+"-div"+tablenum+"").append($coolguy);
+                }
+            }
+
+        }
+    }
 }
 
 
