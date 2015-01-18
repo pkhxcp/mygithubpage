@@ -169,7 +169,7 @@ function getDuration(course){
 }
 
 function getBreak(course1,course2){
-    return (course1.endTime-course2.startTime)*60;
+    return (course2.startTime-course1.endTime)*60;
 }
 
 function getTimeFromDec(hours){
@@ -331,13 +331,17 @@ function finalCompile(BigArray){
                     currentTime=wArr[wday][course].endTime;
                 }
                 else{
-                    //if the first course of the day is not the same as the earliest start time in the week
-                    if{course==0 && wArr[wday].length>0}{
+                    //if the first course of the day is not the same as the earliest start time in the week and there is more courses after it
+                    if{course==0 && wArr[wday].length>1}{
                         var $coolguy = $('<div class="school"></div>');
                         $coolguy.css({'height':""+getBreak(wArr[wday][0],wArr[wday][1])*1.5+"px",
                                     'background-color':"transparent"});
                         $("#"+getDay(wday)+"-div"+i+"").append($coolguy);
-                        currenTime=wArr[wday][course].startTime;
+                        currentTime=wArr[wday][course].startTime;
+                        var $coolguy2 = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(wArr[wday][course].startTime)+'</div><div class="table-class">'+wArr[wday][course].className+'<div class="table-professor">'+wArr[wday][course].professor+'</div></div><div class="table-time-end">'+getTimeFromDec(wArr[wday][course].endTime)+'</div></div>');
+                        $coolguy2.css({'height':""+getDuration(wArr[wday][course])*1.5+"px"});
+                        $("#"+getDay(wday)+"-div"+i+"").append($coolguy2);
+                        currentTime=wArr[wday][course].endTime;
                     }
                     //if the day has no courses
                     else if(wArr[wday].length==0){
@@ -346,12 +350,26 @@ function finalCompile(BigArray){
                                     'background-color':"transparent"});
                         $("#"+getDay(wday)+"-div"+i+"").append($coolguy);
                     }
-                    else if()
-
-                    var $coolguy = $('<div class="school"></div>');
-                    $coolguy.css({'height':""+duration*1.5+"px",
+                    //if the current time is equal to the start time of the current course
+                    else if(currentTime==wArr[wday][course].startTime){
+                        var $coolguy2 = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(wArr[wday][course].startTime)+'</div><div class="table-class">'+wArr[wday][course].className+'<div class="table-professor">'+wArr[wday][course].professor+'</div></div><div class="table-time-end">'+getTimeFromDec(wArr[wday][course].endTime)+'</div></div>');
+                        $coolguy2.css({'height':""+getDuration(wArr[wday][course])*1.5+"px"});
+                        $("#"+getDay(wday)+"-div"+i+"").append($coolguy2);
+                        currentTime=wArr[wday][course].endTime;
+                    }
+                    //if the current time is not equal to the start time of the current course, it implies there is a break.
+                    else if(currentTime!=wArr[wday][course].startTime){
+                        var $coolguy = $('<div class="school"></div>');
+                        $coolguy.css({'height':""+getBreak(currentTime,wArr[wday][course].startTime)*1.5+"px",
                                     'background-color':"transparent"});
-                    $("#"+day+"-div"+tablenum+"").append($coolguy);
+                        $("#"+getDay(wday)+"-div"+i+"").append($coolguy);
+                        currentTime=wArr[wday][course].startTime;
+                        var $coolguy2 = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(wArr[wday][course].startTime)+'</div><div class="table-class">'+wArr[wday][course].className+'<div class="table-professor">'+wArr[wday][course].professor+'</div></div><div class="table-time-end">'+getTimeFromDec(wArr[wday][course].endTime)+'</div></div>');
+                        $coolguy2.css({'height':""+getDuration(wArr[wday][course])*1.5+"px"});
+                        $("#"+getDay(wday)+"-div"+i+"").append($coolguy2);
+                        currentTime=wArr[wday][course].endTime;
+                    }
+
                 }
             }
 
@@ -363,62 +381,6 @@ function finalCompile(BigArray){
 
 
 //tools at disposal: blankTime, addTime, createTable, getDuration, getTimeFromDec
-
-
-
-
-
-
-//TEST FUNCTION TO DELETE AFTER COMPLETE IMPLEMENTATION OF SCHEDULING
-$("#btn-opt-close").click(function(){
-    if(count!=0){
-
-    for( var i=0; i<count ;i++){
-
-        animateout(i);
-    }
-}
-    else{
-        $("#class-name-num0").animate({'marginTop':"-=1600px"},1000);
-    }
-
-     $("#class-modal-button").animate({
-           'marginTop':"-=1600px"},500);
-
-     $("#optimizer").animate({
-           'marginTop':"-=1600px"},500);
-
-     var num = 7;
-
-     for(var i =0; i<num; i++){
-        createTable(i);
-     }
-
-
-      
-
-    var $coolguy = $('<div class="school"></div>');
-    $coolguy.css({'height':"720px"});
-    $("#sunday-div0").append($coolguy);
-
-    var $coolguy1 = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(getTime(8,15,"am"))+'</div><div class="table-class">EECS 338<div class="table-professor">T Pech</div></div><div class="table-time-end">9:15</div></div>');
-    $coolguy1.css({'height':"67.5px",
-                    'position':"relative"});
-    $("#monday-div0").append($coolguy1);
-
-    blankTime(60,0,"monday");
-
-
-//TODO dynamic table gen
-        // var $newguy1 = $('<div class="table-divider"><table style="width:100%"><tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr><tr><td><div class="table-div sunday-div"></td><td><div class="table-div monday-div"></td><td><div class="table-div tuesday-div"></td><td><div class="table-div wednesday-div"></td><td><div class="table-div thursday-div"></td><td><div class="table-div friday-div"></td><td><div class="table-div saturday-div"></td></tr></table></div>');
-        // $newguy1.appendTo(document.body);
-
-
-
-
-    
-    //alert("fuckyou");
-});
 
 
 
