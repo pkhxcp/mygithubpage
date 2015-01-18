@@ -3,11 +3,11 @@ var COURSES = [];
 
 document.getElementById("add-class-button").onclick = function() {
 
-    var className = document.getElementById("class-name").value;
+    var className = document.getElementById("class-name").value.toLowerCase();
 
     var creditHours = document.getElementById("credit-hours").value;
 
-    var professor = document.getElementById("professor").value;
+    var professor = document.getElementById("professor").value.toLowerCase();
 
     var inputFields = document.getElementsByTagName('input');
     var numInputFields = inputFields.length;
@@ -119,34 +119,46 @@ function getTime(hours, minutes, period) {
     return hours;
 }
 
-
-
-
 //returns a list of lists of classes that are possible schedule combinations
 function getRestrictedPowerSet(coursesSet, minClasses, maxClasses, minCredits, maxCredits) {
 
-    var powerSet = [[]];
+
+    //TODO ensure the "must take" classes are actually required
+
+
+    var fullPowerSet = [[]];
+    var partialPowerSet = [[]];
+    
+    console.log("1");
 
     for (var i=0; i < coursesSet.length; i++) {
-        for (var j = 0, powerSetLength = powerSet.length; j < powerSetLength; j++) {
-            
+        console.log("2");
+        for (var j = 0, powerSetLength = fullPowerSet.length; j < powerSetLength; j++) {
+            console.log("3");
             //prevents the same class from occurring more than once in a schedule.
             //this can occur when a class is offered at multiple times and/or by multiple professors
-            if(!containsCourse(powerSet[j], coursesSet[i].className)) {
+            if(!containsCourse(fullPowerSet[j], coursesSet[i].className)) {
+                console.log("4");
 
                 //a potential schedule, lets see if it fits our criteria
-                var candidateSet = powerSet[j].concat(coursesSet[i]);
+                var candidateSet = fullPowerSet[j].concat(coursesSet[i]);
                 var CandidateIsValid = true;
 
-                if (candidateSet.length < minClasses || candidateSet.length > maxClasses)
+                if (candidateSet.length < minClasses || candidateSet.length > maxClasses) {
+                    console.log("5 false " + candidateSet.length);
                     CandidateIsValid = false;
+                }
                 else {
+                    console.log("6");
 
                     var total = sumCreditHours(candidateSet);
 
-                    if(total > maxCredits || total < minCredits)
+                    if(total > maxCredits || total < minCredits) {
+                        console.log("7 false");
                         CandidateIsValid = false;
+                    }
                     else {
+                        console.log("8");
 
                     
 
@@ -155,12 +167,16 @@ function getRestrictedPowerSet(coursesSet, minClasses, maxClasses, minCredits, m
                     }
                 }
 
+                //only add valid candidates to the partial powerset
                 if (CandidateIsValid)
-                    powerSet.push(candidateSet);
+                    partialPowerSet.push(candidateSet);
             }
+
+            //alway add candidate set to fullPowerSet
+            fullPowerSet.push(candidateSet);
         }
     }
-    return powerSet;
+    return partialPowerSet;
 }
 
 function sumCreditHours(candidateSet) {
@@ -178,9 +194,9 @@ function containsCourse(classSet, className) {
 
     for (var i = 0; i < classSet.length; i++) {
         if (classSet[i].className == className)
-            return false;
+            return true;
     }
-    return true;
+    return false;
 }
 
 
