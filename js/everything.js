@@ -156,6 +156,29 @@ function getTime(hours, minutes, period) {
     return hours;
 }
 
+function getDuration(course){
+    return (course.startTime-course.endTime)*60;
+
+}
+
+function getTimeFromDec(hours){
+    var hourstring= "";
+    var minstring= "";
+    var periodstring= "";
+    if(hours>=12){
+        periodstring="pm";
+        hours-=12;
+    }
+    else{
+        periodstring="am";
+    }
+    hourstring = ""+Math.floor(hours)+"";
+    minstring = ""+(hours-Math.floor(hours))*60+"";
+    return ""+hourstring+":"+minstring+periodstring;
+    
+
+}
+
 function createTable(tablecount){
     var $newguy = $('<div class="table-divider" id="table'+tablecount+'"><table style="width:100%"><tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr><tr><td><div class="table-div" id="sunday-div'+tablecount+'"></div></td><td><div class="table-div" id="monday-div'+tablecount+'"></div></td><td><div class="table-div" id="tuesday-div'+tablecount+'"></div></td><td><div class="table-div" id="wednesday-div'+tablecount+'"></div></td><td><div class="table-div" id="thursday-div'+tablecount+'"></div></td><td><div class="table-div" id="friday-div'+tablecount+'"></div></td><td><div class="table-div" id="saturday-div'+tablecount+'"></div></td></tr></table></div>');
         $newguy.appendTo(document.body);
@@ -165,7 +188,30 @@ function animateout(num){
     $("#class-name-num"+num+"").animate({'marginTop':"-=1600px"},1000+50*num);
 }
 
-function makeSchedule(maxtime,mintime,)
+function blankTime(duration,tablenum,day){
+    var $coolguy = $('<div class="school"></div>');
+    $coolguy.css({'height':""+duration*1.5+"px",
+                    'background-color':"transparent"});
+    $("#"+day+"-div"+tablenum+"").append($coolguy);
+}
+
+function addTime(course,tablenum){
+    var $coolguy = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(course.startTime)+'</div><div class="table-class">'+course.className+'<div class="table-professor">'+course.professor+'</div></div><div class="table-time-end">'+getTimeFromDec(course.endTime)+'</div></div>');
+    $coolguy.css({'height':""+getDuration(course)*1.5+"px",
+                    'background-color':"transparent"});
+
+    //TODO figure out how to do days
+    $("#"+day+"-div"+tablenum+"").append($coolguy);
+}
+
+//tools at disposal: blankTime, addTime, createTable, getDuration, getTimeFromDec
+
+
+
+
+
+
+//TEST FUNCTION TO DELETE AFTER COMPLETE IMPLEMENTATION OF SCHEDULING
 $("#btn-opt-close").click(function(){
     if(count!=0){
 
@@ -197,10 +243,12 @@ $("#btn-opt-close").click(function(){
     $coolguy.css({'height':"720px"});
     $("#sunday-div0").append($coolguy);
 
-    var $coolguy1 = $('<div class="school"><div class="table-time-start">8:15</div><div class="table-class">EECS 338<div class="table-professor">T Pech</div></div><div class="table-time-end">9:15</div></div>');
+    var $coolguy1 = $('<div class="school"><div class="table-time-start">'+getTimeFromDec(getTime(8,15,"am"))+'</div><div class="table-class">EECS 338<div class="table-professor">T Pech</div></div><div class="table-time-end">9:15</div></div>');
     $coolguy1.css({'height':"67.5px",
                     'position':"relative"});
     $("#monday-div0").append($coolguy1);
+
+    blankTime(60,0,"monday");
 
 
 //TODO dynamic table gen
@@ -213,6 +261,9 @@ $("#btn-opt-close").click(function(){
     
     //alert("fuckyou");
 });
+
+
+
 
 
 //returns a list of lists of classes that are possible schedule combinations
